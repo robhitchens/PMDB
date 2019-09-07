@@ -1,0 +1,9 @@
+{
+  "name": "PMDB",
+  "version": "0.1.0",
+  "description": "Personal Movie Database App",
+  "main": "index.js",
+  "repository": "git@github.com:robhitchens/PMDB.git",
+  "author": "Robert Hitchens <rjhitchens3@gmail.com>",
+  "license": "MIT"
+}
