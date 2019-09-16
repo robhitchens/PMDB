@@ -10,5 +10,8 @@
     "jquery": "^3.4.1",
     "mdbootstrap": "^4.8.9",
     "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "firebase": "^6.6.1"
   }
 }
