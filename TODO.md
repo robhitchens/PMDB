@@ -13,3 +13,14 @@
 - [] mongodb
 - [] typescript
 - [] expressjs for Server?
+
+### Database rough layout.
+#### Movies
+- [] title
+- [] genre
+- [] running time
+- [] format
+- [] source
+- [] actors
+- [] audio format(s)
+- [] Film/Digital source?
