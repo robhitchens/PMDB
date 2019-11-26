@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /*"strict": true,*/
+    "baseUrl": "./",
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "./target",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "extendedDiagnostics": true,
+    "target": "es2015",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "importHelpers": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./scripts"
+  ]
+}
