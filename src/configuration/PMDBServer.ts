@@ -2,7 +2,7 @@ import {json, urlencoded} from 'body-parser';
 import {ExampleController} from '../controllers/ExampleController';
 import {Server} from "@overnightjs/core";
 import {Logger} from "@overnightjs/logger";
-import {join} from 'path';
+import Path from 'path';
 import CookieParser from "cookie-parser";
 import Express from "express";
 
@@ -28,12 +28,12 @@ export default class PMDBServer extends Server {
     }
 
     private setupViewResolver(): void{
-        this.app.set('views', join(__dirname, 'views'));
+        this.app.set('views', Path.join(__dirname, 'views'));
         this.app.set('view engine', 'pug');
     }
 
     private setupPublicPath(): void{
-        this.app.use(Express.static(join(__dirname, 'public')));
+        this.app.use(Express.static(Path.join(__dirname, 'public')));
     }
 
     private setupNotFoundHandler(): void {

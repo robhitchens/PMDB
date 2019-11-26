@@ -3,7 +3,7 @@ import {Controller, Middleware, Get, Put, Post, Delete} from "@overnightjs/core"
 import {Logger} from "@overnightjs/logger";
 
 @Controller('api')
-export class ExampleController{
+export class ExampleController{//TODO may make into parent controller
 
     @Get(':msg')
     private getMessage(req: Request, res: Response): void{

@@ -1,4 +1,4 @@
-import PMDBServer from './configuration/ExampleServer';
+import PMDBServer from './configuration/PMDBServer';
 
 const exampleServer = new PMDBServer();
 exampleServer.start(8080);
