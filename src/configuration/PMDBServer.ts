@@ -6,7 +6,7 @@ import {join} from 'path';
 import CookieParser from "cookie-parser";
 import Express from "express";
 
-export default class ExampleServer extends Server {
+export default class PMDBServer extends Server {
     private readonly SERVER_STARTED = 'Example server started on port: ';
 
     constructor(){
