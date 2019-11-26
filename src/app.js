@@ -1,4 +1,4 @@
-import 'source-map-support/register';
+import 'source-map-support/register';//Added for easy debugging once compiled.
 import * as createError from 'http-errors';
 import express from 'express';
 import * as path from'path';
@@ -7,6 +7,7 @@ import logger from 'morgan';
 
 import {indexRouter} from './routes/index';
 import {usersRouter} from './routes/users';
+import {moviesRouter} from "./routes/movies";
 
 const port = 8080;
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/movies', moviesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
