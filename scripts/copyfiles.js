@@ -1,0 +1,13 @@
+const shell = require('shelljs');
+shell.echo('Running dependency copy script');
+shell.echo('creating directory public in target folder');
+shell.mkdir('target/public/');
+shell.echo('copying public/images');
+shell.cp('-R', 'src/public/images', 'target/public/images');
+shell.echo('copying public/stylesheets');
+shell.cp('-R', 'src/public/stylesheets', 'target/public/stylesheets');
+shell.echo('copying routes');
+shell.cp('-R', 'src/routes', 'target/routes');
+shell.echo('copying views');
+shell.cp('-R', 'src/views', 'target/views');
+shell.echo('finished copying dependencies');

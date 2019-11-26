@@ -1,6 +1,6 @@
 node_modules/
 dist/
-public/
+src/public/
 .firebase/
 .idea
 *.iml

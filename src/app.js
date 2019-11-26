@@ -1,12 +1,14 @@
+import 'source-map-support/register';
 import * as createError from 'http-errors';
-import * as express from 'express';
-import * as path from 'path';
-import * as cookieParser from 'cookie-parser';
-import * as logger from 'morgan';
+import express from 'express';
+import * as path from'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
-import * as indexRouter from './routes/index';
-import * as usersRouter from './routes/users';
+import {indexRouter} from './routes/index';
+import {usersRouter} from './routes/users';
 
+const port = 8080;
 const app = express();
 
 // view engine setup
@@ -36,6 +38,10 @@ app.use((err, req, res, next) => {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(port, () => {
+  console.info(`Listening on port ${port}`);
 });
 
 export default app;
