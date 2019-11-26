@@ -34,3 +34,8 @@
 - [ ] actors
 - [ ] audio format(s)
 - [ ] Film/Digital source?
+
+### Proposed Features.
+- [ ] User Collection
+- [ ] User Want list
+- [ ] User Films seen
