@@ -3,6 +3,7 @@
 - [] add dependencies.
 - [] configure mongodb
 - [] Design the whole damn thing.
+- [] Setup typescript environment
 
 #### Frontend tooling:
 - [] add pug for html pages.
