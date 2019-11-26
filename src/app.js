@@ -41,6 +41,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
+  console.info('Starting PMDB application.');
   console.info(`Listening on port ${port}`);
 });
 
