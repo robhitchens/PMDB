@@ -17,7 +17,12 @@
 #### Backend tooling:
 - [ ] mongodb
 - [ ] typescript
-- [ ] expressjs for Server?
+- [X] expressjs for Server?
+- [ ] add Firebase for datastore.
+
+#### Hosting Options:
+- [ ] Firebase hosting
+- [ ] Heroku hosting. 
 
 ### Database rough layout.
 #### Movies
