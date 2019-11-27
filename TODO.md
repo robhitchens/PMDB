@@ -40,3 +40,4 @@
 - [ ] User Want list
 - [ ] User Films seen
 - [ ] Maybe add some forum features.
+- [ ] Maybe add currently watching feature.
