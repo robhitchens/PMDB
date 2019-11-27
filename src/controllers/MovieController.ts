@@ -21,7 +21,7 @@ export class MovieController implements PMDBController{//TODO not sure if this w
     private getMovie(req: Request, res: Response){
         Logger.Info(req.params.movie);
         let requestedMovie: Movie = this._movieService.getMovieByTitle(req.params.movie);
-        Logger.Info(`Requested movie ${requestedMovie}`);
+        Logger.Info(`Requested movie ${JSON.stringify(requestedMovie)}`);
         res.status(200).json(requestedMovie);
     }
 
