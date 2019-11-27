@@ -10,12 +10,15 @@ import CONTROLLERS from "../constants/CONTROLLERS";
 
 const viewsFolder: string = "../views";
 const staticFolder: string = "../public";
+const viewEngine: string = "pug";
 
 export default class ServerContextInitializer extends Server {
     private readonly SERVER_STARTED = 'Example server started on port: ';
 
     constructor(){
         super(true);
+
+        Logger.Info(`Initalizing server`);
         this.app.use(json());
         this.app.use(urlencoded({extended: true}));
         this.app.use(cookieParser());
@@ -27,18 +30,23 @@ export default class ServerContextInitializer extends Server {
     }
 
     private setupControllers(): void{
+        Logger.Info(`Setting up controllers`);
         const controllerInstances = [];
-        //TODO make sure I'm doing this right.
+        Logger.Info(`Adding MovieController`);//TODO may iterate over Controller symbols
         controllerInstances.push(container.getNamed<PMDBController>(CONTROLLERS.PMDBController, CONTROLLERS.MovieController));
         super.addControllers(controllerInstances);
     }
 
     private setupViewResolver(): void{
+        Logger.Info(`Setting up view resolver.`);
+        Logger.Info(`Setting views folder to ${Path.join(__dirname, viewsFolder)}`);
         this.app.set('views', Path.join(__dirname, viewsFolder));
-        this.app.set('view engine', 'pug');
+        Logger.Info(`Setting view engine to ${viewEngine}`);
+        this.app.set('view engine', viewEngine);
     }
 
     private setupPublicPath(): void{
+        Logger.Info(`Setting express static folder to ${Path.join(__dirname, staticFolder)}`);
         this.app.use(Express.static(Path.join(__dirname, staticFolder)));
     }
 
@@ -60,6 +68,7 @@ export default class ServerContextInitializer extends Server {
     }
 
     public start(port: number): void{
+        Logger.Info(`Initializing server on port ${port}`);
         this.app.get('*', (req, res) => {
             res.send(this.SERVER_STARTED + port);
         });
