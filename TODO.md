@@ -3,10 +3,12 @@
 - [ ] add dependencies.
 - [ ] configure mongodb
 - [ ] Design the whole damn thing.
+- [X] Add IOC framework
 - [X] Setup typescript environment
-- [ ] Look more into overnightjs
+- [X] Look more into overnightjs
 - [ ] Incorporate jest test framework
 - [ ] Maybe practice TDD for later parts of code
+- [X] Add dependencies and configuration for firebase
 
 #### Frontend tooling:
 - [X] add pug for html pages.
