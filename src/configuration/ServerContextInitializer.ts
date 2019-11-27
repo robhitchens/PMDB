@@ -41,7 +41,8 @@ export default class ServerContextInitializer extends Server {
 
     private setupNotFoundHandler(): void {
         this.app.use((req, res, next) => {
-            res.send('notFound');
+            res.status(404);
+            res.render('notFound');
         });
     }
 
