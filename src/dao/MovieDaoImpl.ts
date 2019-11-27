@@ -7,7 +7,7 @@ import bones from "../temp/BonesMovie";
 export default class MovieDaoImpl implements MovieDao{
 
     public findMovieByTitle(title: string): Movie{
-        if(title === bones.title){
+        if(title === bones.title){//TODO: temporary git
             return bones;
         }
         throw new Error(`Movie with title ${title} not found`);
