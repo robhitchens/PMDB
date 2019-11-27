@@ -4,10 +4,11 @@ import {Logger} from "@overnightjs/logger";
 import {inject, injectable} from "inversify";
 import MovieService from "../service/MovieService";
 import {TYPES} from "../constants/TYPES";
+import PMDBController from "./PMDBController";
 
 @Controller('movie')
 @injectable()
-export class MovieController{//TODO not sure if this will work as expected, with DI
+export class MovieController implements PMDBController{//TODO not sure if this will work as expected, with DI
     private _movieService: MovieService;
     public constructor(
         @inject(TYPES.MovieService) movieService: MovieService

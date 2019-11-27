@@ -1,10 +1,12 @@
 import {json, urlencoded} from 'body-parser';
-import {ExampleController} from '../controllers/ExampleController';
 import {Server} from "@overnightjs/core";
 import {Logger} from "@overnightjs/logger";
 import Path from 'path';
 import CookieParser from "cookie-parser";
 import Express from "express";
+import {container} from "./ContainerConfig";
+import {MovieController} from "../controllers/MovieController";
+import {CONTROLLERS} from "../constants/CONTROLLERS";
 
 export default class ServerContextInitializer extends Server {
     private readonly SERVER_STARTED = 'Example server started on port: ';
@@ -23,7 +25,8 @@ export default class ServerContextInitializer extends Server {
 
     private setupControllers(): void{
         const controllerInstances = [];
-        controllerInstances.push(new ExampleController());
+        //TODO make sure I'm doing this right.
+        controllerInstances.push(container.getNamed<MovieController>(CONTROLLERS.PMDBController, CONTROLLERS.MovieController));
         super.addControllers(controllerInstances);
     }
 
