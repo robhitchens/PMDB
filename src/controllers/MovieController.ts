@@ -7,7 +7,7 @@ import {TYPES} from "../constants/TYPES";
 
 @Controller('movie')
 @injectable()
-export class MovieController{
+export class MovieController{//TODO not sure if this will work as expected, with DI
     private _movieService: MovieService;
     public constructor(
         @inject(TYPES.MovieService) movieService: MovieService
