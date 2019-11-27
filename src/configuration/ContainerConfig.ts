@@ -17,6 +17,7 @@ container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<PMDBController>(CONTROLLERS.PMDBController).to(MovieController).whenTargetNamed(CONTROLLERS.MovieController);
 
+
 export {container};
 /*NOTE. to declare multiple concretions of same interface use
  .whenTargetNamed("name") during declaration and
