@@ -5,7 +5,7 @@ import Path from 'path';
 import CookieParser from "cookie-parser";
 import Express from "express";
 import {container} from "./ContainerConfig";
-import {MovieController} from "../controllers/MovieController";
+import PMDBController from "../controllers/PMDBController";
 import {CONTROLLERS} from "../constants/CONTROLLERS";
 
 export default class ServerContextInitializer extends Server {
@@ -26,7 +26,7 @@ export default class ServerContextInitializer extends Server {
     private setupControllers(): void{
         const controllerInstances = [];
         //TODO make sure I'm doing this right.
-        controllerInstances.push(container.getNamed<MovieController>(CONTROLLERS.PMDBController, CONTROLLERS.MovieController));
+        controllerInstances.push(container.getNamed<PMDBController>(CONTROLLERS.PMDBController, CONTROLLERS.MovieController));
         super.addControllers(controllerInstances);
     }
 
