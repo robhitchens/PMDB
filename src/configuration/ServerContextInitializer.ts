@@ -1,9 +1,9 @@
 import {json, urlencoded} from 'body-parser';
 import {Server} from "@overnightjs/core";
 import {Logger} from "@overnightjs/logger";
-import Path from 'path';
-import CookieParser from "cookie-parser";
-import Express from "express";
+import * as Path from 'path';
+import * as cookieParser from "cookie-parser";
+import * as Express from "express";
 import {container} from "./ContainerConfig";
 import PMDBController from "../controllers/PMDBController";
 import {CONTROLLERS} from "../constants/CONTROLLERS";
@@ -15,7 +15,7 @@ export default class ServerContextInitializer extends Server {
         super(true);
         this.app.use(json());
         this.app.use(urlencoded({extended: true}));
-        this.app.use(CookieParser());
+        this.app.use(cookieParser());
         this.setupControllers();
         this.setupViewResolver();
         this.setupPublicPath();

@@ -1,6 +1,8 @@
 import Movie from "../entity/Movies";
 import MovieDao from "./MovieDao";
+import {injectable} from "inversify";
 
+@injectable()
 export default class MovieDaoImpl implements MovieDao{
     private dummyMovie: Movie;
     constructor(){
