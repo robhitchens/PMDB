@@ -39,3 +39,4 @@
 - [ ] User Collection
 - [ ] User Want list
 - [ ] User Films seen
+- [ ] Maybe add some forum features.
