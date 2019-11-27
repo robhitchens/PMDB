@@ -2,7 +2,7 @@ import MovieDao from "../dao/MovieDao";
 import MovieService from "./MovieService";
 import {inject, injectable} from "inversify";
 import Movie from "../entity/Movie";
-import {TYPES} from "../constants/TYPES";
+import TYPES from "../constants/TYPES";
 
 //TODO this doesn't really do anything more than the dao right now, but it will in future. maybe.
 @injectable()

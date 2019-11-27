@@ -3,4 +3,4 @@ const CONTROLLERS = {
     MovieController: Symbol.for("MovieController")
 };
 
-export {CONTROLLERS};
+export default CONTROLLERS;

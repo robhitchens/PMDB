@@ -2,12 +2,12 @@ import "reflect-metadata";
 import {Container} from "inversify";
 import MovieService from "../service/MovieService";
 import MovieDao from "../dao/MovieDao";
-import {TYPES} from "../constants/TYPES";
+import TYPES from "../constants/TYPES";
 import MovieServiceImpl from "../service/MovieServiceImpl";
 import MovieDaoImpl from "../dao/MovieDaoImpl";
 import PMDBController from "../controllers/PMDBController";
 import {MovieController} from "../controllers/MovieController";
-import {CONTROLLERS} from "../constants/CONTROLLERS";
+import CONTROLLERS from "../constants/CONTROLLERS";
 
 let container = new Container();
 

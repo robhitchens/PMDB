@@ -6,7 +6,7 @@ import * as cookieParser from "cookie-parser";
 import * as Express from "express";
 import {container} from "./ContainerConfig";
 import PMDBController from "../controllers/PMDBController";
-import {CONTROLLERS} from "../constants/CONTROLLERS";
+import CONTROLLERS from "../constants/CONTROLLERS";
 
 export default class ServerContextInitializer extends Server {
     private readonly SERVER_STARTED = 'Example server started on port: ';

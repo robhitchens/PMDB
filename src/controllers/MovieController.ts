@@ -3,7 +3,7 @@ import {Controller, Middleware, Get, Put, Post, Delete} from "@overnightjs/core"
 import {Logger} from "@overnightjs/logger";
 import {inject, injectable, named} from "inversify";
 import MovieService from "../service/MovieService";
-import {TYPES} from "../constants/TYPES";
+import TYPES from "../constants/TYPES";
 import PMDBController from "./PMDBController";
 import Movie from "../entity/Movie";
 
