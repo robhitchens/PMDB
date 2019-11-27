@@ -1,6 +1,5 @@
-import MovieDao from "../dao/MovieDao";
+import Movie from "../entity/Movies";
 
-//TODO this doesn't really do anything more than the dao right now, but it will in future. maybe.
-export default class MovieService {
-
+export default interface MovieService{
+    getMovieByTitle(title: string): Movie;
 }

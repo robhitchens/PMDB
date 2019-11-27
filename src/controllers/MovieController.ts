@@ -1,9 +1,19 @@
 import {Request, Response} from "express";
 import {Controller, Middleware, Get, Put, Post, Delete} from "@overnightjs/core";
 import {Logger} from "@overnightjs/logger";
+import {inject, injectable} from "inversify";
+import MovieService from "../service/MovieService";
+import {TYPES} from "../constants/TYPES";
 
 @Controller('movie')
+@injectable()
 export class MovieController{
+    private _movieService: MovieService;
+    public constructor(
+        @inject(TYPES.MovieService) movieService: MovieService
+    ){
+        this._movieService = movieService;
+    }
 
     @Get(':movie')
     private getMovie(req: Request, res: Response){
