@@ -5,6 +5,7 @@ import {inject, injectable} from "inversify";
 import MovieService from "../service/MovieService";
 import {TYPES} from "../constants/TYPES";
 import PMDBController from "./PMDBController";
+import Movie from "../entity/Movie";
 
 @Controller('movie')
 @injectable()
@@ -19,9 +20,9 @@ export class MovieController implements PMDBController{//TODO not sure if this w
     @Get(':movie')
     private getMovie(req: Request, res: Response){
         Logger.Info(req.params.movie);
-        res.status(200).json({
-           message: req.params.movie,
-        });
+        let requestedMovie: Movie = this._movieService.getMovieByTitle(req.params.movie);
+        Logger.Info(`Requested movie ${requestedMovie}`);
+        res.status(200).json(requestedMovie);
     }
 
     @Put(':movie')

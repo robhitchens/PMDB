@@ -1,7 +1,7 @@
 import MovieDao from "../dao/MovieDao";
 import MovieService from "./MovieService";
 import {inject, injectable} from "inversify";
-import Movies from "../entity/Movies";
+import Movie from "../entity/Movie";
 import {TYPES} from "../constants/TYPES";
 
 //TODO this doesn't really do anything more than the dao right now, but it will in future. maybe.
@@ -14,7 +14,7 @@ export default class MovieServiceImpl implements MovieService{
         this._movieDao = movieDao;
     }
 
-    getMovieByTitle(title: string): Movies {
+    getMovieByTitle(title: string): Movie {
         return this._movieDao.findMovieByTitle(title);
     }
 

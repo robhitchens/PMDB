@@ -1,9 +1,9 @@
 //TODO types are place holders for now
-export default class Movies {
+export default class Movie {
     private _title: string;
-    private _genre: string;//TODO could make separate entity. Or create separate microservice to handle
+    private _genres: Array<string>;//TODO could make separate entity. Or create separate microservice to handle
     private _runningTime: string;
-    private _format: string; //TODO could make separate entity
+    private _formats: Array<string>; //TODO could make separate entity
     private _source: string; //TODO could make separate entity
     private _actors: Array<string>; //TODO could make some relation to separate entity
     private _audioFormats: Array<string>;//TODO same thing
@@ -15,11 +15,11 @@ export default class Movies {
         this._title = title;
     }
 
-    get genre(): string {
-        return this._genre;
+    get genres(): Array<string> {
+        return this._genres;
     }
-    set genre(genre: string){
-        this._genre = genre;
+    set genres(genres: Array<string>){
+        this._genres = genres;
     }
 
     get runningTime(): string{
@@ -29,11 +29,11 @@ export default class Movies {
         this._runningTime = runningTime;
     }
 
-    get format(): string {
-        return this._format;
+    get formats(): Array<string> {
+        return this._formats;
     }
-    set format(format: string){
-        this._format = format;
+    set formats(formats: Array<string>){
+        this._formats = formats;
     }
 
     get source(): string{
