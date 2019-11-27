@@ -8,6 +8,9 @@ import {container} from "./ContainerConfig";
 import PMDBController from "../controllers/PMDBController";
 import CONTROLLERS from "../constants/CONTROLLERS";
 
+const viewsFolder: string = "../views";
+const staticFolder: string = "../public";
+
 export default class ServerContextInitializer extends Server {
     private readonly SERVER_STARTED = 'Example server started on port: ';
 
@@ -31,18 +34,18 @@ export default class ServerContextInitializer extends Server {
     }
 
     private setupViewResolver(): void{
-        this.app.set('views', Path.join(__dirname, 'views'));
+        this.app.set('views', Path.join(__dirname, viewsFolder));
         this.app.set('view engine', 'pug');
     }
 
     private setupPublicPath(): void{
-        this.app.use(Express.static(Path.join(__dirname, 'public')));
+        this.app.use(Express.static(Path.join(__dirname, staticFolder)));
     }
 
     private setupNotFoundHandler(): void {
         this.app.use((req, res, next) => {
             res.status(404);
-            res.render('notFound');
+            res.render('notFound', {message: "404: Page can not be found"});
         });
     }
 
