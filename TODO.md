@@ -9,6 +9,8 @@
 - [ ] Incorporate jest test framework
 - [ ] Maybe practice TDD for later parts of code
 - [X] Add dependencies and configuration for firebase
+- [ ] Might not end up using firebase, seems like may be a bit of a hassle and not what I want.
+- [ ] Might try to use different hosting service.
 
 #### Frontend tooling:
 - [X] add pug for html pages.
