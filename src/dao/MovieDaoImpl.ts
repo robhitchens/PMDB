@@ -2,6 +2,9 @@ import Movie from "../entity/Movie";
 import MovieDao from "./MovieDao";
 import {injectable} from "inversify";
 import bones from "../temp/BonesMovie";
+import * as firebase from "firebase/app";
+import "firebase/auth";//Don't know what I need to do here.//Auth might not be required here.
+import "firebase/firestore";
 
 @injectable()
 export default class MovieDaoImpl implements MovieDao{
