@@ -19,10 +19,10 @@ export default class MovieDaoImpl implements MovieDao{
         this.dataStore = entityManager.movies;
     }
     //TODO add code to actually use the datastore
-    public findMovieByTitle(title: string): Promise<Movie>{
+    public findMovieByTitle(title: string): Promise<Movie>{//TODO this may never be used
         return new Promise<Movie>(
             (resolve, reject) => {
-                this.dataStore.findOne({title: title}, (err, document) => {
+                this.dataStore.findOne({title: title}, (err: Error, document: any) => {
                     if(err) {
                         Logger.Warn(`Error occurred finding movie for title: ${title}: error: ${err.message}`);
                         Logger.Warn(err, true);
@@ -35,28 +35,48 @@ export default class MovieDaoImpl implements MovieDao{
         );
     }
 
-    findMoviesByFormat(format: string): Array<Movie> {
-        return undefined;
+    findMoviesByFormat(format: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            this.dataStore.find({format: format}, (err: Error, documents: Array<any>) => {
+                if(err){
+                    Logger.Warn(`Error occurred getting movies for format ${format}. Error: ${err.message}`);
+                    Logger.Warn(err, true);
+                    reject(err);
+                }else{
+                    resolve(<Array<Movie>> documents);
+                }
+            });
+        });
     }
 
-    findMoviesByFormats(format: Array<string>): Array<Movie> {
-        return undefined;
+    findMoviesByFormats(format: Array<string>): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+           reject(new Error('TODO implement'));
+        });
     }
 
-    findMoviesByGenre(genre: string): Array<Movie> {
-        return undefined;
+    findMoviesByGenre(genre: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
-    findMoviesBySource(source: string): Array<Movie> {
-        return undefined;
+    findMoviesBySource(source: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
-    findMoviesCloseToRunningTime(runningTime: string): Array<Movie> {
-        return undefined;
+    findMoviesCloseToRunningTime(runningTime: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
-    findMoviesFeaturingActor(actor: string): Array<Movie> {
-        return undefined;
+    findMoviesFeaturingActor(actor: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
     findMoviesMatchingTitle(title: string): Promise<Array<Movie>> {
@@ -73,16 +93,22 @@ export default class MovieDaoImpl implements MovieDao{
             });
     }
 
-    findMoviesWithActors(actors: Array<string>): Array<Movie> {
-        return undefined;
+    findMoviesWithActors(actors: Array<string>): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
-    findMoviesWithAudioFormat(audioFormat: string): Array<Movie> {
-        return undefined;
+    findMoviesWithAudioFormat(audioFormat: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
-    findMoviesWithAudioFormats(audioFormats: Array<string>): Array<Movie> {
-        return undefined;
+    findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            reject(new Error('TODO implement'));
+        });
     }
 
 }
