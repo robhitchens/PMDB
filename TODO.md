@@ -11,7 +11,7 @@
 - [X] Add dependencies and configuration for firebase
 - [ ] Might not end up using firebase, seems like may be a bit of a hassle and not what I want.
 - [ ] Might try to use different hosting service.
-
+- [ ] Maybe install and use camo for local db while developing and switch to using firebase laterff.
 #### Frontend tooling:
 - [X] add pug for html pages.
 - [ ] webpack for bundling UI code.
