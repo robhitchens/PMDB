@@ -9,32 +9,34 @@ import PMDBController from "../controllers/PMDBController";
 import {MovieController} from "../controllers/MovieController";
 import CONTROLLERS from "../constants/CONTROLLERS";
 import * as DataStore from "nedb";
-import EntityManager from "../dao/EntityManager";
-import EntityManagerImpl from "../dao/EntityManagerImpl";
 import {Logger} from "@overnightjs/logger";
+import EntityManager from "../dao/EntityManager";
+import {join} from "path";
 
-let container: Container = new Container();
-const dataStore: DataStore = new DataStore({
-    inMemoryOnly: true,
-    filename: "./temp/development.db"
-});
-dataStore.loadDatabase((err) => {
-    Logger.Err(`Unable to load neDB database: ${err.message}`);
+function handleDBError(dbName: string, err): void{
+    Logger.Err(`Unable to load ${dbName} database: ${err.message}`);
     Logger.Err(err, true);
     throw err;//Note: rethrowing error.
-});//Note: could load separate datastores for different entites, may revisit later
+}
+
+let container: Container = new Container();
+const entityManager: EntityManager = {
+    movies: new DataStore({//Movies "table" definition
+        inMemoryOnly: false,
+        filename: join(__dirname, "../../temp/movies.db")
+    })
+};
+//Below could iterate through object keys and call load database on each.
+entityManager.movies.loadDatabase((err) => { handleDBError('movies', err); });
 //NOTE: Looks like this is the correct pattern to bind injectables
 //container.bind<TargetInterface>(TypeOfToBeInjected).to(Injectable)
+//Note: below seems to bn like bean declaration in spring.
+//TODO: need to add configuration to use development db or not.
+container.bind<EntityManager>(TYPES.EntityManager).toConstantValue(entityManager);
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<PMDBController>(CONTROLLERS.PMDBController).to(MovieController).whenTargetNamed(CONTROLLERS.MovieController);
 //TODO need to figure out how to switch entity managers when not in development/switching to firebase
-container.bind<EntityManager>(TYPES.EntityManager).to(EntityManagerImpl);
-
-//Note: below seems to bn like bean declaration in spring.
-//TODO: need to add configuration to use development db or not.
-container.bind<DataStore>(TYPES.DataStore).toConstantValue(dataStore);
-
 
 export {container};
 /*NOTE. to declare multiple concretions of same interface use

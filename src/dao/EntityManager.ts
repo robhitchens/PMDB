@@ -1,7 +1,4 @@
-import PMDBEntity from "../entity/PMDBEntity";
-
+import * as DataStore from "nedb";
 export default interface EntityManager{
-    save(entity: PMDBEntity);
-    delete(entity: PMDBEntity);
-    //TODO add more methods;
+    movies: DataStore;
 }

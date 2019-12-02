@@ -1,14 +1,23 @@
 import Movie from "../entity/Movie";
 import MovieDao from "./MovieDao";
-import {injectable} from "inversify";
+import {inject, injectable} from "inversify";
 import bones from "../temp/BonesMovie";
 import * as firebase from "firebase/app";
 import "firebase/auth";//Don't know what I need to do here.//Auth might not be required here.
 import "firebase/firestore";
 
+import * as DataStore from "nedb";
+import TYPES from "../constants/TYPES";
+import EntityManager from "./EntityManager";
+
 @injectable()
 export default class MovieDaoImpl implements MovieDao{
-
+    private dataStore: DataStore;
+    //TODO need to make clearer
+    public constructor(@inject(TYPES.EntityManager) entityManager: EntityManager){//TODO should create interface for use with database
+        this.dataStore = entityManager.movies;
+    }
+    //TODO add code to actually use the datastore
     public findMovieByTitle(title: string): Movie{
         if(title === bones.title){//TODO: temporary
             return bones;
