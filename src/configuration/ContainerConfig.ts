@@ -9,6 +9,8 @@ import PMDBController from "../controllers/PMDBController";
 import {MovieController} from "../controllers/MovieController";
 import CONTROLLERS from "../constants/CONTROLLERS";
 import * as DataStore from "nedb";
+import EntityManager from "../dao/EntityManager";
+import EntityManagerImpl from "../dao/EntityManagerImpl";
 
 let container: Container = new Container();
 const dataStore: DataStore = new DataStore({
@@ -20,6 +22,9 @@ const dataStore: DataStore = new DataStore({
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<PMDBController>(CONTROLLERS.PMDBController).to(MovieController).whenTargetNamed(CONTROLLERS.MovieController);
+//TODO need to figure out how to switch entity managers when not in development/switching to firebase
+container.bind<EntityManager>(TYPES.EntityManager).to(EntityManagerImpl);
+
 //Note: below seems to bn like bean declaration in spring.
 //TODO: need to add configuration to use development db or not.
 container.bind<DataStore>(TYPES.DataStore).toConstantValue(dataStore);
