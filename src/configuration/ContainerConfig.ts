@@ -8,14 +8,21 @@ import MovieDaoImpl from "../dao/MovieDaoImpl";
 import PMDBController from "../controllers/PMDBController";
 import {MovieController} from "../controllers/MovieController";
 import CONTROLLERS from "../constants/CONTROLLERS";
+import * as DataStore from "nedb";
 
-let container = new Container();
-
+let container: Container = new Container();
+const dataStore: DataStore = new DataStore({
+    inMemoryOnly: true,
+    filename: "./temp/development.db"
+});
 //NOTE: Looks like this is the correct pattern to bind injectables
 //container.bind<TargetInterface>(TypeOfToBeInjected).to(Injectable)
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<PMDBController>(CONTROLLERS.PMDBController).to(MovieController).whenTargetNamed(CONTROLLERS.MovieController);
+//Note: below seems to bn like bean declaration in spring.
+//TODO: need to add configuration to use development db or not.
+container.bind<DataStore>(TYPES.DataStore).toConstantValue(dataStore);
 
 
 export {container};
