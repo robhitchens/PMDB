@@ -9,6 +9,7 @@ import "firebase/firestore";
 import * as DataStore from "nedb";
 import TYPES from "../constants/TYPES";
 import EntityManager from "./EntityManager";
+import {Logger} from "@overnightjs/logger";
 
 @injectable()
 export default class MovieDaoImpl implements MovieDao{
@@ -18,11 +19,20 @@ export default class MovieDaoImpl implements MovieDao{
         this.dataStore = entityManager.movies;
     }
     //TODO add code to actually use the datastore
-    public findMovieByTitle(title: string): Movie{
-        if(title === bones.title){//TODO: temporary
-            return bones;
-        }
-        throw new Error(`Movie with title ${title} not found`);
+    public findMovieByTitle(title: string): Promise<Movie>{
+        return new Promise<Movie>(
+            (resolve, reject) => {
+                this.dataStore.findOne({title: title}, (err, document) => {
+                    if(err) {
+                        Logger.Warn(`Error occurred finding movie for title: ${title}: error: ${err.message}`);
+                        Logger.Warn(err, true);
+                        reject(err);
+                    }else {
+                        resolve(<Movie> document);
+                    }
+                });
+            }
+        );
     }
 
     findMoviesByFormat(format: string): Array<Movie> {
@@ -49,8 +59,18 @@ export default class MovieDaoImpl implements MovieDao{
         return undefined;
     }
 
-    findMoviesMatchingTitle(title: string): Array<Movie> {
-        return undefined;
+    findMoviesMatchingTitle(title: string): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+                this.dataStore.find({title: title}, (err: Error, documents: Array<any>) => {
+                    if(err){
+                        Logger.Warn(`Error occurred finding movies by title  ${title}. Error: ${err.message}`);
+                        Logger.Warn(err, true);
+                        reject(err);
+                    }else{
+                        resolve(<Array<Movie>> documents);
+                    }
+                });
+            });
     }
 
     findMoviesWithActors(actors: Array<string>): Array<Movie> {

@@ -36,7 +36,7 @@ container.bind<EntityManager>(TYPES.EntityManager).toConstantValue(entityManager
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<PMDBController>(CONTROLLERS.PMDBController).to(MovieController).whenTargetNamed(CONTROLLERS.MovieController);
-//TODO need to figure out how to switch entity managers when not in development/switching to firebase
+//TODO need to figure out how to switch entity managers when not in development/switching to fir&ebase
 
 export {container};
 /*NOTE. to declare multiple concretions of same interface use
