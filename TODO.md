@@ -12,6 +12,8 @@
 - [ ] Might not end up using firebase, seems like may be a bit of a hassle and not what I want.
 - [ ] Might try to use different hosting service.
 - [ ] Maybe install and use camo for local db while developing and switch to using firebase laterff.
+- [ ] for above can use nedb with camo for entites
+
 #### Frontend tooling:
 - [X] add pug for html pages.
 - [ ] webpack for bundling UI code.
