@@ -11,11 +11,17 @@ import CONTROLLERS from "../constants/CONTROLLERS";
 import * as DataStore from "nedb";
 import EntityManager from "../dao/EntityManager";
 import EntityManagerImpl from "../dao/EntityManagerImpl";
+import {Logger} from "@overnightjs/logger";
 
 let container: Container = new Container();
 const dataStore: DataStore = new DataStore({
     inMemoryOnly: true,
     filename: "./temp/development.db"
+});
+dataStore.loadDatabase((err) => {
+    Logger.Err(`Unable to load neDB database: ${err.message}`);
+    Logger.Err(err, true);
+    throw err;//Note: rethrowing error.
 });
 //NOTE: Looks like this is the correct pattern to bind injectables
 //container.bind<TargetInterface>(TypeOfToBeInjected).to(Injectable)
