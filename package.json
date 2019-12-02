@@ -19,7 +19,8 @@
     "morgan": "~1.9.1",
     "nedb": "^1.8.0",
     "pug": "2.0.0-beta11",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.20"
   },
   "devDependencies": {
     "@overnightjs/core": "^1.6.9",

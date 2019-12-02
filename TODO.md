@@ -13,6 +13,8 @@
 - [ ] Might try to use different hosting service.
 - [ ] Maybe install and use camo for local db while developing and switch to using firebase laterff.
 - [ ] for above can use nedb with camo for entites
+- [ ] Look into [typeORM](https://typeorm.io/#/)
+
 
 #### Frontend tooling:
 - [X] add pug for html pages.
