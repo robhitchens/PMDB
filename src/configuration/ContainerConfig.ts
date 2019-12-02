@@ -22,7 +22,7 @@ dataStore.loadDatabase((err) => {
     Logger.Err(`Unable to load neDB database: ${err.message}`);
     Logger.Err(err, true);
     throw err;//Note: rethrowing error.
-});
+});//Note: could load separate datastores for different entites, may revisit later
 //NOTE: Looks like this is the correct pattern to bind injectables
 //container.bind<TargetInterface>(TypeOfToBeInjected).to(Injectable)
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
