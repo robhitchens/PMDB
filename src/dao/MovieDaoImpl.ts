@@ -53,7 +53,15 @@ export default class MovieDaoImpl implements MovieDao{
 
     findMoviesByFormats(format: Array<string>): Promise<Array<Movie>> {
         return new Promise((resolve, reject) => {
-           reject(new Error('TODO implement'));
+           this.dataStore.find({format: {$in: format}}, (err: Error, documents: Array<Movie>) => {
+              if(err){
+                  Logger.Warn(`Error occurred finding Movies for format(s) ${format}. Error: ${err.message}`);
+                  Logger.Err(err, true);
+                  reject(err);
+              } else {
+                  resolve(documents);
+              }
+           });
         });
     }
 
@@ -121,19 +129,29 @@ export default class MovieDaoImpl implements MovieDao{
 
     findMoviesWithActors(actors: Array<string>): Promise<Array<Movie>> {
         return new Promise((resolve, reject) => {
-            reject(new Error('TODO implement'));
-        });
-    }
-
-    findMoviesWithAudioFormat(audioFormat: string): Promise<Array<Movie>> {
-        return new Promise((resolve, reject) => {
-            reject(new Error('TODO implement'));
+            this.dataStore.find({actors: {$in: actors}}, (err: Error, documents: Array<Movie>) => {
+                if (err) {
+                    Logger.Warn(`Error occurred finding Movies with actors: ${actors}. Error: ${err.message}`);
+                    Logger.Err(err, true);
+                    reject(err);
+                } else {
+                    resolve(documents);
+                }
+            })
         });
     }
 
     findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<Movie>> {
         return new Promise((resolve, reject) => {
-            reject(new Error('TODO implement'));
+            this.dataStore.find({audioFormats: {$in: audioFormats}}, (err: Error, documents: Array<Movie>) => {
+                if(err){
+                    Logger.Warn(`Error occurred finding Movies with audio formats: ${audioFormats}. Error: ${err.message}`);
+                    Logger.Err(err, true);
+                    reject(err);
+                } else {
+                    resolve(documents);
+                }
+            });
         });
     }
 
