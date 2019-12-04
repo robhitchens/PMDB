@@ -1,5 +1,5 @@
-import Movie from "../entity/Movies";
+import Movie from "../entity/Movie";
 
 export default interface MovieService{
-    getMovieByTitle(title: string): Movie;
+    getMovieByTitle(title: string): Promise<Movie>;
 }

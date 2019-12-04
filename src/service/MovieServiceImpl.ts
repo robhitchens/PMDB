@@ -14,7 +14,7 @@ export default class MovieServiceImpl implements MovieService{
         this._movieDao = movieDao;
     }
 
-    getMovieByTitle(title: string): Movie {
+    getMovieByTitle(title: string): Promise<Movie> {
         return this._movieDao.findMovieByTitle(title);
     }
 
