@@ -11,23 +11,30 @@ import CONTROLLERS from "../constants/CONTROLLERS";
 import * as DataStore from "nedb";
 import {Logger} from "@overnightjs/logger";
 import EntityManager from "../dao/EntityManager";
-import {join} from "path";
+import {join, resolve} from "path";
 
-function handleDBError(dbName: string, err): void{
-    Logger.Err(`Unable to load ${dbName} database: ${err.message}`);
-    Logger.Err(err, true);
-    throw err;//Note: rethrowing error.
+const moviesDB: string = resolve(__dirname, "../../temp/movies.db");//join(__dirname, "../../temp/movies.db");
+
+function onDBLoad(dbName: string, err: Error): void{
+    if(err) {
+        Logger.Err(`Unable to load ${dbName} database: ${err}`);
+        Logger.Err(err, true);
+        throw err;//Note: rethrowing error.
+    }else{
+        Logger.Info(`Database at ${moviesDB}, loaded.`);
+    }
 }
 
 let container: Container = new Container();
 const entityManager: EntityManager = {
     movies: new DataStore({//Movies "table" definition
         inMemoryOnly: false,
-        filename: join(__dirname, "../../temp/movies.db")
+        filename: moviesDB
     })
 };
 //Below could iterate through object keys and call load database on each.
-entityManager.movies.loadDatabase((err) => { handleDBError('movies', err); });
+Logger.Info(`Movies resolved path ${moviesDB}`);
+entityManager.movies.loadDatabase((err) => { onDBLoad('movies', err); });
 //NOTE: Looks like this is the correct pattern to bind injectables
 //container.bind<TargetInterface>(TypeOfToBeInjected).to(Injectable)
 //Note: below seems to bn like bean declaration in spring.
