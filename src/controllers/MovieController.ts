@@ -31,20 +31,25 @@ export class MovieController implements PMDBController{//TODO not sure if this w
                 });
     }
 
-    @Put(':movie')
+    /*@Put(':id')//TODO this path should be used for updating an entity?
     private putMovie(req: Request, res: Response){
-        Logger.Info(req.params.movie);
+        Logger.Info(req.params.id);
         res.status(400).json({
             error: req.params.movie
         });
-    }
+    }*/
 
-    @Post(':movie')
+    @Post(':id')//TODO this request would be creating a new movie
     private postMovie(req: Request, res: Response){
-        Logger.Info(req.params.movie);
-        return res.status(400).json({
-            error: req.params.movie
-        });
+        Logger.Info(req.params.id);//TODO not sure how I'm going to do this.
+        this._movieService.save(req.body)
+            .then((savedMovie) => {
+                res.status(200).json(savedMovie);
+            })
+            .catch((err) => {
+                Logger.Err(err, true);
+                res.status(500).json({error: err.message});
+            });
     }
 
     @Delete(':movie')

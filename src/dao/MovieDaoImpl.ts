@@ -155,4 +155,19 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
+    save(movie: Movie): Promise<Movie> {
+        return new Promise((resolve, reject) => {
+           this.dataStore.insert(movie, (err: Error, document: Movie) => {
+               if(err){
+                   Logger.Err(`Unable to save movie ${JSON.stringify(movie)}`);
+                   Logger.Err(err, true);
+                   reject(err);
+               }else{
+                   Logger.Info(`Movie ${document.title} saved with id ${document._id}`);
+                   resolve(document)
+               }
+           });
+        });
+    }
+
 }

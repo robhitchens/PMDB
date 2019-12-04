@@ -10,4 +10,6 @@ export default interface MovieDao {
     findMoviesFeaturingActor(actor: string): Promise<Array<Movie>>;
     findMoviesWithActors(actors: Array<string>): Promise<Array<Movie>>;
     findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<Movie>>;
+
+    save(movie: Movie): Promise<Movie>;
 }
