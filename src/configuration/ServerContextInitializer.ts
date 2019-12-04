@@ -1,4 +1,4 @@
-import {json, urlencoded} from 'body-parser';
+import * as bodyparser from 'body-parser';
 import {Server} from "@overnightjs/core";
 import {Logger} from "@overnightjs/logger";
 import * as Path from 'path';
@@ -7,6 +7,7 @@ import * as Express from "express";
 import {container} from "./ContainerConfig";
 import PMDBController from "../controllers/PMDBController";
 import CONTROLLERS from "../constants/CONTROLLERS";
+import {MovieController} from "../controllers/MovieController";
 
 const viewsFolder: string = "../views";
 const staticFolder: string = "../public";
@@ -19,9 +20,9 @@ export default class ServerContextInitializer extends Server {
         super(true);
 
         Logger.Info(`Initalizing server`);
-        this.app.use(json());
-        this.app.use(urlencoded({extended: true}));
-        this.app.use(cookieParser());
+        super.app.use(bodyparser.json());
+        super.app.use(bodyparser.urlencoded({extended: true}));
+        super.app.use(cookieParser());
         this.setupControllers();
         this.setupViewResolver();
         this.setupPublicPath();
@@ -33,7 +34,8 @@ export default class ServerContextInitializer extends Server {
         Logger.Info(`Setting up controllers`);
         const controllerInstances = [];
         Logger.Info(`Adding MovieController`);//TODO may iterate over Controller symbols
-        controllerInstances.push(container.getNamed<PMDBController>(CONTROLLERS.PMDBController, CONTROLLERS.MovieController));
+        controllerInstances.push(container.get<MovieController>(CONTROLLERS.MovieController));
+        //controllerInstances.push(new MovieController());
         super.addControllers(controllerInstances);
     }
 

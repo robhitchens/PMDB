@@ -6,6 +6,7 @@ import MovieService from "../service/MovieService";
 import TYPES from "../constants/TYPES";
 import PMDBController from "./PMDBController";
 import Movie from "../entity/Movie";
+import {container} from "../configuration/ContainerConfig";
 
 @Controller('movie')
 @injectable()
@@ -15,6 +16,12 @@ export class MovieController implements PMDBController{//TODO not sure if this w
         @inject(TYPES.MovieService) @named(TYPES.MovieService) movieService: MovieService
     ){
         this._movieService = movieService;
+        //this._movieService = container.getNamed<MovieService>(TYPES.MovieService, TYPES.MovieService);
+    }
+
+    @Get('test')
+    private test(req: Request, res: Response){
+        res.status(200).json({message: 'working'});
     }
 
     @Get(':movie')
@@ -39,9 +46,10 @@ export class MovieController implements PMDBController{//TODO not sure if this w
         });
     }*/
 
-    @Post(':id')//TODO this request would be creating a new movie
+    @Post()//TODO this request would be creating a new movie
     private postMovie(req: Request, res: Response){
         Logger.Info(req.params.id);//TODO not sure how I'm going to do this.
+        Logger.Info(req, true);
         this._movieService.save(req.body)
             .then((savedMovie) => {
                 res.status(200).json(savedMovie);
