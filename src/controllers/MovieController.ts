@@ -6,7 +6,6 @@ import MovieService from "../service/MovieService";
 import TYPES from "../constants/TYPES";
 import PMDBController from "./PMDBController";
 import Movie from "../entity/Movie";
-import {container} from "../configuration/ContainerConfig";
 
 @Controller('movie')
 @injectable()
@@ -16,7 +15,6 @@ export class MovieController implements PMDBController{//TODO not sure if this w
         @inject(TYPES.MovieService) @named(TYPES.MovieService) movieService: MovieService
     ){
         this._movieService = movieService;
-        //this._movieService = container.getNamed<MovieService>(TYPES.MovieService, TYPES.MovieService);
     }
 
     @Get('test')
