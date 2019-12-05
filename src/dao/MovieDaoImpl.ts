@@ -194,7 +194,7 @@ export default class MovieDaoImpl implements MovieDao{
                         Logger.Err({
                             message: `Unable to update movie with id:${movie._id}`,
                             movie: movie,
-                            Error: err
+                            error: err
                         }, true);
                         reject(err);
                     }else{
@@ -206,6 +206,24 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-
-
+    delete(movie: Movie): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.dataStore.remove({_id: movie._id}, {}, (err: Error, numRemoved: number) => {
+                if(err){
+                    Logger.Err({
+                        message: `Unable to delete movie`,
+                        movie: movie,
+                        error: err
+                    }, true);
+                    reject(err);
+                }else if(numRemoved === 1){
+                    Logger.Info(`Movie with id ${movie._id} successfully deleted`);
+                    resolve(true);
+                }else{
+                    Logger.Info(`Movie with ${movie._id} was not deleted. Movie may have already been removed.`);
+                    resolve(false);
+                }
+            });
+        });
+    }
 }

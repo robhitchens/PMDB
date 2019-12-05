@@ -62,7 +62,6 @@ export class MovieController implements PMDBController{//TODO not sure if this w
 
     @Post('update')
     private updateMovie(req: Request, res: Response){
-        Logger.Info(``);
         let movieToUpdate: Movie = <Movie> req.body;
         this._movieService.update(movieToUpdate)
             .then(updatedMovie => {
@@ -76,13 +75,19 @@ export class MovieController implements PMDBController{//TODO not sure if this w
 
     @Delete(':movie')
     private delMovie(req: Request, res: Response){
-        try{
-            throw new Error(req.params.movie);
-        }catch (err) {
-            Logger.Err(err, true);
-            return res.status(400).json({
-                error: req.params.movie
+        let movieToDelete: Movie = <Movie> req.body;
+        this._movieService.delete(movieToDelete)
+            .then(result => {
+                let response: any = {
+                    message: (result)
+                        ?`Movie was successfully removed from database`
+                        :`Movie may have already been deleted. Unable to find id ${movieToDelete._id}`
+                };
+                res.status(200).json(response);
+            })
+            .catch(err => {
+                Logger.Err(err, true);
+                res.status(500).json({error: err.message});
             });
-        }
     }
 }

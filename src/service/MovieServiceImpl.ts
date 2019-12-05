@@ -34,4 +34,8 @@ export default class MovieServiceImpl implements MovieService{
             throw err;
         }
     }
+
+    delete(movie: Movie): Promise<boolean> {
+        return this._movieDao.delete(movie);
+    }
 }
