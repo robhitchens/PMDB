@@ -19,7 +19,7 @@ export default class ServerContextInitializer extends Server {
     constructor(){
         super(true);
 
-        Logger.Info(`Initalizing server`);
+        Logger.Info(`Initializing server`);
         super.app.use(bodyparser.json());
         super.app.use(bodyparser.urlencoded({extended: true}));
         super.app.use(cookieParser());
@@ -35,7 +35,6 @@ export default class ServerContextInitializer extends Server {
         const controllerInstances = [];
         Logger.Info(`Adding MovieController`);//TODO may iterate over Controller symbols
         controllerInstances.push(container.get<MovieController>(CONTROLLERS.MovieController));
-        //controllerInstances.push(new MovieController());
         super.addControllers(controllerInstances);
     }
 
