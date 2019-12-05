@@ -15,6 +15,8 @@
 - [ ] for above can use nedb with camo for entites
 - [ ] Look into [typeORM](https://typeorm.io/#/)
 - [ ] look into using JSDoc + better-docs for code documentation
+- [ ] maybe look into using nedb as a caching mechanism to sit in front of final database decision.
+Could be used to cache frequent requests.
 
 #### Frontend tooling:
 - [X] add pug for html pages.
