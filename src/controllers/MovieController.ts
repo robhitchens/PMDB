@@ -12,23 +12,21 @@ import Movie from "../entity/Movie";
 export class MovieController implements PMDBController{//TODO not sure if this will work as expected, with DI
     private _movieService: MovieService;
     public constructor(
-        @inject(TYPES.MovieService) @named(TYPES.MovieService) movieService: MovieService
+        @inject(TYPES.MovieService)
+        @named(TYPES.MovieService)
+            movieService: MovieService
     ){
         this._movieService = movieService;
     }
 
-    @Get('test')
-    private test(req: Request, res: Response){
-        res.status(200).json({message: 'working'});
-    }
-
-    @Get(':movie')
-    private getMovie(req: Request, res: Response){
-        Logger.Info(req.params.movie);
-        this._movieService.getMovieByTitle(req.params.movie)
-                .then((movie: Movie) => {
-                    Logger.Info(`Requested movie ${JSON.stringify(movie)}`);
-                    res.status(200).json(movie);
+    @Get()
+    private queryMovies(req: Request, res: Response){
+        let queriedMovie: Movie = <Movie> (<any> req.params);//this seems a little hacky
+        this._movieService
+            .getMovies(queriedMovie)
+                .then((movies: Array<Movie>) => {
+                    Logger.Info(`Found ${movies.length} movie(s) matching query ${JSON.stringify(queriedMovie)}`);
+                    res.status(200).json(movies);
                 })
                 .catch((err: Error) => {
                     Logger.Err(err, true);
@@ -44,7 +42,7 @@ export class MovieController implements PMDBController{//TODO not sure if this w
         });
     }*/
 
-    @Post()//TODO this request would be creating a new movie
+    @Post('create')
     private postMovie(req: Request, res: Response){
         Logger.Info(req, true);
         let newMovie: Movie = <Movie> req.body;

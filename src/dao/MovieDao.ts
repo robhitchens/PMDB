@@ -1,5 +1,7 @@
 import Movie from '../entity/Movie';
 export default interface MovieDao {
+    findMovies(movie: Movie): Promise<Array<Movie>>;
+
     findMovieByTitle(title: string): Promise<Movie>;
     findMoviesMatchingTitle(title: string): Promise<Array<Movie>>;
     findMoviesByGenre(genre: string): Promise<Array<Movie>>;

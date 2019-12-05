@@ -14,6 +14,10 @@ export default class MovieServiceImpl implements MovieService{
         this._movieDao = movieDao;
     }
 
+    getMovies(movie: Movie): Promise<Array<Movie>> {//TODO should really separate database and domain layers better.
+        return this._movieDao.findMovies(movie);//NOTE: using movie class here like query. need to see if this will actually work. probably not like I expect it to.
+    }
+
     getMovieByTitle(title: string): Promise<Movie> {
         return this._movieDao.findMovieByTitle(title);
     }

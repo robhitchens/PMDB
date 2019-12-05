@@ -16,11 +16,30 @@ import {Logger} from "@overnightjs/logger";
 @injectable()
 export default class MovieDaoImpl implements MovieDao{
     private dataStore: DataStore;
-    //TODO need to make clearer
-    public constructor(@inject(TYPES.EntityManager) entityManager: EntityManager){//TODO should create interface for use with database
+
+    public constructor(
+        @inject(TYPES.EntityManager) entityManager: EntityManager
+    ){
         this.dataStore = entityManager.movies;
     }
-    //TODO add code to actually use the datastore
+
+    findMovies(movie: Movie): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+           this.dataStore.find(movie, (err: Error, documents: Array<Movie>) => {
+                if(err){
+                    Logger.Err({
+                        message: `Unable to find movies for query:`,
+                        movie: movie,
+                        error: err
+                    }, true);
+                    reject(err);
+                }else{
+                    resolve(documents);
+                }
+           });
+        });
+    }
+
     public findMovieByTitle(title: string): Promise<Movie>{//TODO this may never be used
         return new Promise<Movie>(
             (resolve, reject) => {
