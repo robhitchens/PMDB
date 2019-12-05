@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "development": "nodemon",
     "build": "node scripts/clean.js && tsc && node scripts/copyfiles.js",
-    "clean": "node scripts/clean.js"
+    "clean": "node scripts/clean.js",
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
