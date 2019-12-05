@@ -48,13 +48,27 @@ export class MovieController implements PMDBController{//TODO not sure if this w
 
     @Post()//TODO this request would be creating a new movie
     private postMovie(req: Request, res: Response){
-        Logger.Info(req.params.id);//TODO not sure how I'm going to do this.
         Logger.Info(req, true);
-        this._movieService.save(req.body)
+        let newMovie: Movie = <Movie> req.body;
+        this._movieService.save(newMovie)
             .then((savedMovie) => {
                 res.status(200).json(savedMovie);
             })
             .catch((err) => {
+                Logger.Err(err, true);
+                res.status(500).json({error: err.message});
+            });
+    }
+
+    @Post('update')
+    private updateMovie(req: Request, res: Response){
+        Logger.Info(``);
+        let movieToUpdate: Movie = <Movie> req.body;
+        this._movieService.update(movieToUpdate)
+            .then(updatedMovie => {
+                res.status(200).json(updatedMovie);
+            })
+            .catch(err => {
                 Logger.Err(err, true);
                 res.status(500).json({error: err.message});
             });

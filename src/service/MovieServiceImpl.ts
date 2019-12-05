@@ -19,6 +19,19 @@ export default class MovieServiceImpl implements MovieService{
     }
 //TODO so far this class just sits in front of the movieservice
     save(movie: Movie): Promise<Movie> {
-        return this._movieDao.save(movie);
+        return this._movieDao.create(movie);
+    }
+
+    async update(movie: Movie): Promise<Movie> {
+        try {
+           let savedMovie: Movie = await this._movieDao.findMovieById(movie._id);
+           if(savedMovie){
+               return await this._movieDao.update(movie);
+           }else{//TODO not sure what todo here
+               return null;
+           }
+        }catch (err){
+            throw err;
+        }
     }
 }

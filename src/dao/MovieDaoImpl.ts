@@ -155,19 +155,57 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    save(movie: Movie): Promise<Movie> {
+    findMovieById(id: string): Promise<Movie> {
+        return new Promise((resolve, reject) => {
+            this.dataStore.findOne({_id: id}, (err: Error, document: Movie) => {
+                if(err){
+                    Logger.Warn(`Unable to find movie for Id: ${id}`);
+                    Logger.Err(err, true);
+                    reject(err);
+                }else{
+                    resolve(document);
+                }
+            });
+        });
+    }
+
+    create(movie: Movie): Promise<Movie> {
         return new Promise((resolve, reject) => {
            this.dataStore.insert(movie, (err: Error, document: Movie) => {
                if(err){
-                   Logger.Err(`Unable to save movie ${JSON.stringify(movie)}`);
-                   Logger.Err(err, true);
+                   Logger.Err({
+                       message: `Unable to save movie ${JSON.stringify(movie)}`,
+                       err: err
+                   }, true);
                    reject(err);
                }else{
                    Logger.Info(`Movie ${document.title} saved with id ${document._id}`);
-                   resolve(document)
+                   resolve(document);
                }
            });
         });
     }
+
+    update(movie: Movie): Promise<Movie> {
+        return new Promise((resolve, reject) => {
+            this.dataStore.update({_id: movie._id}, movie, {returnUpdatedDocs: true},
+                (err: Error, numAffected: number, affectedDocuments: Array<Movie>, upsert: boolean) => {
+                    if(err){
+                        Logger.Err({
+                            message: `Unable to update movie with id:${movie._id}`,
+                            movie: movie,
+                            Error: err
+                        }, true);
+                        reject(err);
+                    }else{
+                        Logger.Info(`Movie with id ${movie._id} successfully updated`);
+                        Logger.Info(`Number of documents affected: ${numAffected}`);
+                        resolve(affectedDocuments[0]);
+                    }
+                });
+        });
+    }
+
+
 
 }

@@ -1,3 +1,3 @@
 export default class PMDBEntity{
-    public _id: number;
+    public _id: string;
 }
