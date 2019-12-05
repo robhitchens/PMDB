@@ -73,7 +73,7 @@ export class MovieController implements PMDBController{//TODO not sure if this w
             });
     }
 
-    @Delete(':movie')
+    @Delete('delete')
     private delMovie(req: Request, res: Response){
         let movieToDelete: Movie = <Movie> req.body;
         this._movieService.delete(movieToDelete)
