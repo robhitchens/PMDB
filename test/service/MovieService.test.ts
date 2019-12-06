@@ -16,7 +16,7 @@ beforeAll(() => {
 afterEach(() => {
     jest.clearAllMocks();
 });
-describe('When searching for a movie by title.', () => {
+describe('When searching for a movie by title', () => {
    it('returns a rejected promise', () => {
        //TODO need to figure out how to use ts-jest mocked. and mocking moviedao functions.
        let testErrorMessage: string = 'Test error';
