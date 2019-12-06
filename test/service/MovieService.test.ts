@@ -20,7 +20,8 @@ describe('When searching for a movie by title', () => {
    it('returns a rejected promise', () => {
        //TODO need to figure out how to use ts-jest mocked. and mocking moviedao functions.
        let testErrorMessage: string = 'Test error';
-       mockMovieDao.findMovieByTitle = jest.fn().mockImplementationOnce(() => {
+       mocked(mockMovieDao.findMovieByTitle)
+           .mockImplementationOnce(() => {
            return Promise.reject(new Error(testErrorMessage));
        });
        let errorThrown: boolean = false;
@@ -35,7 +36,8 @@ describe('When searching for a movie by title', () => {
        });
    });
    it('should return the requested movie', () => {
-        mockMovieDao.findMovieByTitle = jest.fn().mockImplementationOnce((title: string) => {
+        mocked(mockMovieDao.findMovieByTitle)
+            .mockImplementationOnce((title: string) => {
             if(title === bones.title) {
                 return Promise.resolve(bones);
             }else{
@@ -51,5 +53,8 @@ describe('When searching for a movie by title', () => {
             }).catch((err) => {//Note: error shouldn't be thrown here.
                 expect(err).toBeNull();
         });
+   });
+   afterEach(() => {
+       mocked(mockMovieDao.findMovieByTitle).mockClear();
    });
 });
