@@ -86,7 +86,7 @@ describe('When getting all movies matching criteria', () => {
         });
         movieService.getMovies(bones)
             .then((results) => {
-                expect(mockMovieDao.findMovies).toHaveBeenCalled{};
+                expect(mockMovieDao.findMovies).toHaveBeenCalled();
                 expect(mockMovieDao.findMovies).toHaveBeenCalledTimes(1);
                 expect(mockMovieDao.findMovies).toHaveBeenCalledWith(bones);
                 expect(results[0]).toEqual(bones);
@@ -98,3 +98,12 @@ describe('When getting all movies matching criteria', () => {
     });
 });
 
+describe('When update is called', () => {
+    it('', () => {
+
+    });
+    afterEach(() => {
+        mocked(mockMovieDao.findMovieById).mockClear();
+        mocked(mockMovieDao.update).mockClear();
+    });
+});
