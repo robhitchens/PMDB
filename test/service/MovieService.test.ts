@@ -32,7 +32,7 @@ describe('When searching for a movie by title', () => {
                expect(mockMovieDao.findMovieByTitle).toHaveBeenCalledTimes(1);
                expect(err.message).toEqual(testErrorMessage);
            }).finally(() => {
-               expect(errorThrown).toEqual(true);
+               expect(errorThrown).toBe(true);
        });
    });
    it('should return the requested movie', () => {
@@ -58,3 +58,43 @@ describe('When searching for a movie by title', () => {
        mocked(mockMovieDao.findMovieByTitle).mockClear();
    });
 });
+
+describe('When getting all movies matching criteria', () => {
+    it('returns a rejected promise if an error occurs', () => {
+        let errorMessage: string = 'Test error message.';
+        let errorThrown: boolean = false;
+        mocked(mockMovieDao.findMovies)
+            .mockImplementationOnce(() => {
+                return Promise.reject(new Error(errorMessage));
+            });
+
+        movieService.getMovies(bones)
+            .catch((error: Error) => {
+                errorThrown = true;
+                expect(mockMovieDao.findMovies).toHaveBeenCalled();
+                expect(mockMovieDao.findMovies).toHaveBeenCalledTimes(1);
+                expect(error.message).toBe(errorMessage);
+            })
+            .finally(() => {
+                expect(errorThrown).toBe(true);
+            });
+    });
+    it('should return the an array of matching movies', () => {
+        mocked(mockMovieDao.findMovies)
+            .mockImplementationOnce(() => {
+            return Promise.resolve(new Array<Movie>(bones));
+        });
+        movieService.getMovies(bones)
+            .then((results) => {
+                expect(mockMovieDao.findMovies).toHaveBeenCalled{};
+                expect(mockMovieDao.findMovies).toHaveBeenCalledTimes(1);
+                expect(mockMovieDao.findMovies).toHaveBeenCalledWith(bones);
+                expect(results[0]).toEqual(bones);
+            })
+            .catch((err) => {expect(err).toBeNull()});
+    });
+    afterEach(() =>{
+       mocked(mockMovieDao.findMovies).mockClear();
+    });
+});
+
