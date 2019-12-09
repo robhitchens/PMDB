@@ -99,7 +99,7 @@ describe('When getting all movies matching criteria', () => {
 });
 
 describe('When update is called', () => {
-    it('', () => {
+    it('should throw an error if it can\'t find the movie', () => {
 
     });
     afterEach(() => {
