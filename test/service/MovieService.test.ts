@@ -100,7 +100,49 @@ describe('When getting all movies matching criteria', () => {
 
 describe('When update is called', () => {
     it('should throw an error if it can\'t find the movie', () => {
-
+        let errorMessage: string = 'Test error message';
+        let errorThrown: boolean = false;
+        mocked(mockMovieDao.findMovieById).mockImplementationOnce((id: string) =>{
+            console.debug(`mock findMovieById implementation called with: ${id}`);
+            return Promise.reject(new Error(errorMessage));
+        });
+        mocked(mockMovieDao.update).mockImplementationOnce((movie: Movie) => {
+            console.debug(`mock update implementation called with:`, movie);
+            return Promise.resolve(movie);
+        });
+        movieService.update(bones)
+            .catch((err: Error) => {
+                errorThrown = true;
+                expect(mockMovieDao.findMovieById).toHaveBeenCalled();
+                expect(mockMovieDao.findMovieById).toHaveBeenCalledTimes(1);
+                expect(mockMovieDao.findMovieById).toHaveBeenCalledWith(bones._id);
+                expect(mockMovieDao.update).not.toHaveBeenCalled();
+                expect(err.message).toEqual(errorMessage);
+            })
+            .finally(() => {
+                expect(errorThrown).toBe(true);
+            })
+            ;
+    });//TODO add test for returning null
+    it('should return the updated movie', () => {
+        mocked(mockMovieDao.findMovieById).mockImplementationOnce((id: string) => {
+            console.debug(`mock findMovieById implementation called with: ${id}`);
+            return Promise.resolve(bones);
+        });
+        mocked(mockMovieDao.update).mockImplementationOnce((movie: Movie) => {
+            console.debug(`mock update implementation called with:`, movie);
+            return Promise.resolve(movie);
+        });
+        movieService.update(bones)
+            .then((result: Movie) => {
+                expect(mockMovieDao.findMovieById).toHaveBeenCalled();
+                expect(mockMovieDao.findMovieById).toHaveBeenCalledTimes(1);
+                expect(mockMovieDao.findMovieById).toHaveBeenCalledWith(bones._id);
+                expect(mockMovieDao.update).toHaveBeenCalled();
+                expect(mockMovieDao.update).toHaveBeenCalledTimes(1);
+                expect(mockMovieDao.update).toHaveBeenCalledWith(bones);
+                expect(result).toEqual(bones);
+            });
     });
     afterEach(() => {
         mocked(mockMovieDao.findMovieById).mockClear();
