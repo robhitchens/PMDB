@@ -32,6 +32,7 @@ const entityManager: EntityManager = {
         filename: moviesDB
     })
 };
+//TODO use nedb as an in memory database for caching entities. Use another database for full persistence.
 //Below could iterate through object keys and call load database on each.
 Logger.Info(`Movies resolved path ${moviesDB}`);
 entityManager.movies.loadDatabase((err) => { onDBLoad('movies', err); });
