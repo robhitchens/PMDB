@@ -17,4 +17,6 @@ export default interface MovieDao {
     create(movie: Movie): Promise<Movie>;
     update(movie: Movie): Promise<Movie>;
     delete(movie: Movie): Promise<boolean>;//todo may just return boolean for successful deletion.
+
+    getOnlyCachedMovies(): Promise<Array<Movie>>;
 }

@@ -30,6 +30,7 @@ export default class MovieServiceImpl implements MovieService{
         try {
            let savedMovie: Movie = await this._movieDao.findMovieById(movie._id);
            if(savedMovie){
+               savedMovie._persisted = false;
                return await this._movieDao.update(movie);
            }else{//TODO not sure what todo here
                return null;

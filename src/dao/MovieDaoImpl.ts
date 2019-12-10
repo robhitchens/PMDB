@@ -245,4 +245,20 @@ export default class MovieDaoImpl implements MovieDao{
             });
         });
     }
+
+    getOnlyCachedMovies(): Promise<Array<Movie>> {
+        return new Promise((resolve, reject) => {
+            this.dataStore.find({_persisted: false}, (err: Error, documents: Array<Movie>) => {
+                if(err){
+                    Logger.Err({
+                        message: 'Error occurred looking for only cached movies',
+                        error: err
+                    }, true);
+                    reject(err);
+                }else{
+                    resolve(documents);
+                }
+            });
+        });
+    }
 }

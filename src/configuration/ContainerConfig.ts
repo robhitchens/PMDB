@@ -12,8 +12,17 @@ import * as DataStore from "nedb";
 import {Logger} from "@overnightjs/logger";
 import EntityManager from "../dao/EntityManager";
 import {join, resolve} from "path";
+import {readFileSync} from "fs";
+import {Properties} from "../resources/Properties";
+import ScheduledPersistence from "../service/ScheduledPersistence";
+import ScheduledPersistenceImpl from "../service/ScheduledPersistenceImpl";
 
+//TODO need to make more robust for properties for running in different environments.
+const propertiesPath: string = resolve(__dirname, "../resources/properties.json");
 const moviesDB: string = resolve(__dirname, "../../temp/movies.db");//join(__dirname, "../../temp/movies.db");
+
+const properties: Properties = <Properties> (<any> readFileSync(propertiesPath));
+
 
 function onDBLoad(dbName: string, err: Error): void{
     if(err) {
@@ -32,6 +41,7 @@ const entityManager: EntityManager = {
         filename: moviesDB
     })
 };
+
 //TODO use nedb as an in memory database for caching entities. Use another database for full persistence.
 //Below could iterate through object keys and call load database on each.
 Logger.Info(`Movies resolved path ${moviesDB}`);
@@ -44,6 +54,8 @@ container.bind<EntityManager>(TYPES.EntityManager).toConstantValue(entityManager
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<MovieController>(CONTROLLERS.MovieController).to(MovieController);
+container.bind<Properties>(TYPES.Properties).toConstantValue(properties);
+container.bind<ScheduledPersistence>(TYPES.ScheduledPersistence).to(ScheduledPersistenceImpl);
 //TODO need to figure out how to switch entity managers when not in development/switching to fir&ebase
 
 export {container};

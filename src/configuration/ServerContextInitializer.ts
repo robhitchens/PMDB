@@ -8,6 +8,8 @@ import {container} from "./ContainerConfig";
 import PMDBController from "../controllers/PMDBController";
 import CONTROLLERS from "../constants/CONTROLLERS";
 import {MovieController} from "../controllers/MovieController";
+import TYPES from "../constants/TYPES";
+import ScheduledPersistence from "../service/ScheduledPersistence";
 
 const viewsFolder: string = "../views";
 const staticFolder: string = "../public";
@@ -28,6 +30,13 @@ export default class ServerContextInitializer extends Server {
         this.setupPublicPath();
         this.setupNotFoundHandler();
         this.setupDefaultErrorHandler();
+        this.setupScheduledServices();
+    }
+
+    private setupScheduledServices(): void{
+        container
+            .get<ScheduledPersistence>(TYPES.ScheduledPersistence)
+            .pollCache();
     }
 
     private setupControllers(): void{
