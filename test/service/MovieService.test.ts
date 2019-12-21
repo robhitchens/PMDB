@@ -2,7 +2,6 @@ import "reflect-metadata";
 import MovieServiceImpl from "../../src/service/MovieServiceImpl";
 import MovieService from "../../src/service/MovieService";
 import MovieDao from "../../src/dao/MovieDao";
-import BonesMovie from "../temp/BonesMovie";
 import {mocked} from "ts-jest/utils";
 import Movie from "../../src/entity/Movie";
 import bones from "../temp/BonesMovie";
