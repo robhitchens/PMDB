@@ -11,7 +11,7 @@ export default class ScheduledPersistenceImpl implements ScheduledPersistence{
 
     private properties: Properties;
     private movieDao: MovieDao;
-    //TODO will have to create scheduler for all entites.
+    //TODO will have to create scheduler for all entities.
 
     constructor(
         @inject(TYPES.Properties) properties: Properties,
@@ -24,7 +24,7 @@ export default class ScheduledPersistenceImpl implements ScheduledPersistence{
     pollCache(): void {
         setInterval(() => {
                 this.writeCacheToPersistence()
-                    .then(() => {
+                    .then(() => {//TODO increase interval, actually do something. also maybe use worker threads once available in node
                         Logger.Info(`MovieDao cache has been written to persistence`);
                     }).catch((err: Error) => {
                     Logger.Err({

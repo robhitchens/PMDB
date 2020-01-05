@@ -1,7 +1,7 @@
 import Movie from "../entity/Movie";
 import MovieDao from "./MovieDao";
 import {inject, injectable} from "inversify";
-import bones from "../../test/temp/BonesMovie";
+//import bones from "../../test/temp/BonesMovie";
 import * as firebase from "firebase/app";
 import "firebase/auth";//Don't know what I need to do here.//Auth might not be required here.
 import "firebase/firestore";

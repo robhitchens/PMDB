@@ -21,7 +21,7 @@ import ScheduledPersistenceImpl from "../service/ScheduledPersistenceImpl";
 const propertiesPath: string = resolve(__dirname, "../resources/properties.json");
 const moviesDB: string = resolve(__dirname, "../../temp/movies.db");//join(__dirname, "../../temp/movies.db");
 
-const properties: Properties = <Properties> (<any> readFileSync(propertiesPath));
+const properties: Properties = <Properties> (<any> JSON.parse(readFileSync(propertiesPath, 'utf8')));
 
 
 function onDBLoad(dbName: string, err: Error): void{
@@ -50,11 +50,11 @@ entityManager.movies.loadDatabase((err) => { onDBLoad('movies', err); });
 //container.bind<TargetInterface>(TypeOfToBeInjected).to(Injectable)
 //Note: below seems to bn like bean declaration in spring.
 //TODO: need to add configuration to use development db or not.
+container.bind<Properties>(TYPES.Properties).toConstantValue(properties);
 container.bind<EntityManager>(TYPES.EntityManager).toConstantValue(entityManager);
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<MovieController>(CONTROLLERS.MovieController).to(MovieController);
-container.bind<Properties>(TYPES.Properties).toConstantValue(properties);
 container.bind<ScheduledPersistence>(TYPES.ScheduledPersistence).to(ScheduledPersistenceImpl);
 //TODO need to figure out how to switch entity managers when not in development/switching to fir&ebase
 
