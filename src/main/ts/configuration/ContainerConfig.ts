@@ -13,7 +13,7 @@ import {Logger} from "@overnightjs/logger";
 import EntityManager from "../dao/EntityManager";
 import {join, resolve} from "path";
 import {readFileSync} from "fs";
-import {Properties} from "../resources/Properties";
+import {Properties} from "../../../resources/Properties";
 import ScheduledPersistence from "../service/ScheduledPersistence";
 import ScheduledPersistenceImpl from "../service/ScheduledPersistenceImpl";
 

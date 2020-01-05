@@ -1,7 +1,7 @@
 import ScheduledPersistence from "./ScheduledPersistence";
 import {inject, injectable} from "inversify";
 import TYPES from "../constants/TYPES";
-import {Properties} from "../resources/Properties";
+import {Properties} from "../../../resources/Properties";
 import MovieDao from "../dao/MovieDao";
 import {Logger} from "@overnightjs/logger";
 import Movie from "../entity/Movie";
