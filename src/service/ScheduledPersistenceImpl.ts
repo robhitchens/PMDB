@@ -23,7 +23,7 @@ export default class ScheduledPersistenceImpl implements ScheduledPersistence{
 
     pollCache(): void {
         setInterval(() => {
-                this.writeCacheToPersistence()
+                this.writeCacheToPersistence()//todo could also maybe use a message queue to keep caches up to date for multiple instances.
                     .then(() => {//TODO increase interval, actually do something. also maybe use worker threads once available in node
                         Logger.Info(`MovieDao cache has been written to persistence`);
                     }).catch((err: Error) => {
