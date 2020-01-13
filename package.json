@@ -7,7 +7,10 @@
     "development": "nodemon",
     "build": "node scripts/clean.js && tsc && node scripts/copyfiles.js",
     "clean": "node scripts/clean.js",
-    "test": "jest"
+    "test": "jest",
+    "svelte-build": "rollup -C",
+    "svelte-dev": "rollup -C -W",
+    "svlete-start": "sirv public"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -21,11 +24,15 @@
     "nedb": "^1.8.0",
     "pug": "2.0.0-beta11",
     "reflect-metadata": "^0.1.13",
+    "sirv-cli": "^0.4.5",
     "typeorm": "^0.2.20"
   },
   "devDependencies": {
     "@overnightjs/core": "^1.6.9",
     "@overnightjs/logger": "^1.1.9",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-typescript": "^2.1.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.2",
     "@types/jest": "^24.0.23",
@@ -34,6 +41,10 @@
     "esm": "^3.2.25",
     "jest": "^24.9.0",
     "nodemon": "^2.0.1",
+    "rollup": "^1.29.0",
+    "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-svelte": "^5.1.1",
+    "rollup-plugin-terser": "^5.2.0",
     "shelljs": "^0.8.3",
     "source-map-support": "^0.5.16",
     "svelte": "^3.16.7",
