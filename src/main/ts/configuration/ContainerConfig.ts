@@ -16,6 +16,7 @@ import {readFileSync} from "fs";
 import {Properties} from "../../../resources/Properties";
 import ScheduledPersistence from "../service/ScheduledPersistence";
 import ScheduledPersistenceImpl from "../service/ScheduledPersistenceImpl";
+import {ViewController} from "../controllers/ViewController";
 
 //TODO need to make more robust for properties for running in different environments.
 const propertiesPath: string = resolve(__dirname, "../resources/properties.json");
@@ -55,6 +56,7 @@ container.bind<EntityManager>(TYPES.EntityManager).toConstantValue(entityManager
 container.bind<MovieDao>(TYPES.MovieDao).to(MovieDaoImpl);
 container.bind<MovieService>(TYPES.MovieService).to(MovieServiceImpl);
 container.bind<MovieController>(CONTROLLERS.MovieController).to(MovieController);
+container.bind<ViewController>(CONTROLLERS.ViewController).to(ViewController);
 container.bind<ScheduledPersistence>(TYPES.ScheduledPersistence).to(ScheduledPersistenceImpl);
 //TODO need to figure out how to switch entity managers when not in development/switching to fir&ebase
 

@@ -36,6 +36,7 @@
     "nodemon": "^2.0.1",
     "shelljs": "^0.8.3",
     "source-map-support": "^0.5.16",
+    "svelte": "^3.16.7",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
