@@ -4,7 +4,7 @@ import MovieService from "../../../main/ts/service/MovieService";
 import MovieDao from "../../../main/ts/dao/MovieDao";
 import {mocked} from "ts-jest/utils";
 import Movie from "../../../main/ts/entity/Movie";
-import bones from "../temp/BonesMovie";
+import bones from "../../temp/BonesMovie";
 import MovieDaoImpl from "../../../main/ts/dao/MovieDaoImpl";
 //jest.mock('../../src/dao/MovieDao');
 
