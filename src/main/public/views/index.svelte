@@ -1,7 +1,9 @@
 <!--TODO start compositing home page using svelte.-->
 <script>
     export let name;
+    import Navigation from './navigation.svelte'
 </script>
+<Navigation/>
 <main>
     <h1>Hello {name}!</h1>
 </main>
