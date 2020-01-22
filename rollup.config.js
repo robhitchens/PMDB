@@ -8,7 +8,7 @@ import {terser} from "rollup-plugin-terser";
 const production = !process.env.ROLLUP_WATCH;
 //TODO apply configuration to project, need to get rollup and svelte working with typescript
 export default {
-    input: 'src/main.js',
+    input: 'src/main/public/js/main.js',
     output: {
         sourcemap: true,
         format: 'iife',

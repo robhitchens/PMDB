@@ -5,3 +5,4 @@ dist/
 *.iml
 target/
 temp/
+src/main/public/build/
