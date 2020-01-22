@@ -17,6 +17,7 @@
 - [ ] look into using JSDoc + better-docs for code documentation
 - [ ] maybe look into using nedb as a caching mechanism to sit in front of final database decision.
 Could be used to cache frequent requests.
+- [ ] could use service workers to cache user's personal collection data on the client side, would be helpful for PWA
 
 #### Frontend tooling:
 - [X] add pug for html pages.
