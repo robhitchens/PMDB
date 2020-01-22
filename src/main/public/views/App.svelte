@@ -1,12 +1,15 @@
 <!--TODO start compositing home page using svelte.-->
 <script>
+    import Footer from "./common/Footer.svelte";
+
     export let name;
-    import Navigation from './navigation.svelte'
+    import Navigation from './common/Navigation.svelte'
 </script>
 <Navigation/>
 <main>
     <h1>Hello {name}!</h1>
 </main>
+<Footer/>
 
 <style>
     main{
