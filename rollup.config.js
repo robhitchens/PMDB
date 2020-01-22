@@ -1,5 +1,6 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from "rollup-plugin-livereload";
 import {terser} from "rollup-plugin-terser";
@@ -15,6 +16,7 @@ export default {
         file: 'public/build/bundle.js'
     },
     plugins: [
+        replace({}),//TODO need to replace any environment keys in frontend with process configured keys.
         svelte({
             dev: !production,
             css: css => {
