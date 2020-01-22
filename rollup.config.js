@@ -30,7 +30,7 @@ export default {
         commonjs(),
 
         !production && serve(),
-        !production && livereload('public'),
+        !production && livereload('src/main/public'),
         production && terser()
     ],
     watch: {
