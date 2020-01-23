@@ -1,15 +1,32 @@
 <!--TODO start compositing home page using svelte.-->
 <script>
     import Footer from "./common/Footer.svelte";
-
-    export let name;
     import Navigation from './common/Navigation.svelte'
+    import Home, {home} from "./pages/Home.svelte";
+    import Contact, {contact} from "./pages/Contact.svelte";
+    import About, {about} from "./pages/About.svelte";
+    import {currentView} from './ViewStore';
+
+    const panes = {};
+    panes[home] = Home;
+    panes[contact] = Contact;
+    panes[about] = About;
+
 </script>
 <Navigation/>
 <main>
-    <slot>
+    <!--<h1>The view is {$currentView.toString()}</h1>-->
+    <svelte:component this={panes[$currentView]}/>
+    <!--<slot name="main-content">
         <em>no content was provided</em>
-    </slot>
+    </slot>-->
+    <!--{#if currentView === 'home'}
+        <Home/>
+    {:else if currentView === 'contact'}
+        <Contact/>
+    {:else if currentView === 'about'}
+        <About/>
+    {/if}-->
 </main>
 <Footer/>
 
