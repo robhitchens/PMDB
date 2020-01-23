@@ -7,7 +7,9 @@
 </script>
 <Navigation/>
 <main>
-    <h1>Hello {name}!</h1>
+    <slot>
+        <em>no content was provided</em>
+    </slot>
 </main>
 <Footer/>
 

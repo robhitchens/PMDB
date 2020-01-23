@@ -1,13 +1,28 @@
 <!--TODO need to figure out what layout will look like-->
 <script>
-    let current = 'home';
+    let current = 'home';//todo will need to determine view.
 </script>
 
 <nav>
     <ul><!--TODO figure out what to put for navigation-->
-        <li><button class:active={current === 'home'} on:click={() => current = 'home'}>Home</button></li>
-        <li><button class:active={current === 'contact'} on:click={() => current = 'contact'}>Contact</button></li>
-        <li><button class:active={current === 'about'} on:click={() => current = 'about'}>About</button></li>
+        <li>
+            <button
+                    class:active={current === 'home'}
+                    on:click={() => current = 'home'}
+            >Home</button>
+        </li>
+        <li>
+            <button
+                    class:active={current === 'contact'}
+                    on:click={() => current = 'contact'}
+            >Contact</button>
+        </li>
+        <li>
+            <button
+                    class:active={current === 'about'}
+                    on:click={() => current = 'about'}
+            >About</button>
+        </li>
     </ul>
 </nav>
 
