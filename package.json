@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
     "development": "nodemon",
     "build": "node scripts/clean.js && tsc && node scripts/copyfiles.js",
     "clean": "node scripts/clean.js",
     "test": "jest",
-    "svelte-build": "rollup -C",
-    "svelte-dev": "rollup -C -W",
-    "svlete-start": "sirv public"
+    "svelte-build": "rollup -c",
+    "svelte-dev": "rollup -c -w",
+    "start": "sirv public"
   },
   "dependencies": {
     "@rollup/plugin-replace": "^2.3.0",

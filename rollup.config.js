@@ -8,7 +8,7 @@ import {terser} from "rollup-plugin-terser";
 const production = !process.env.ROLLUP_WATCH;
 //TODO apply configuration to project, need to get rollup and svelte working with typescript
 export default {
-    input: 'src/main/svelte/js/main.js',
+    input: 'src/main/svelte/main.js',
     output: {
         sourcemap: true,
         format: 'iife',
@@ -16,7 +16,7 @@ export default {
         file: 'public/build/bundle.js'
     },
     plugins: [
-        replace({}),//TODO need to replace any environment keys in frontend with process configured keys.
+        //replace({}),//TODO need to replace any environment keys in frontend with process configured keys.
         svelte({
             dev: !production,
             css: css => {
@@ -25,12 +25,12 @@ export default {
         }),
         resolve({
             browser: true,
-            dedupe: importee => importee === 'svelte' || importtee.startsWith('svelte/')
+            dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
         }),
         commonjs(),
 
         !production && serve(),
-        !production && livereload('src/main/svelte'),
+        !production && livereload('public'),
         production && terser()
     ],
     watch: {
