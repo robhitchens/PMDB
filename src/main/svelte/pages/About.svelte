@@ -2,9 +2,9 @@
     export const about = Symbol.for('about');
 </script>
 <style>
-    div{
+    /*div{
         margin-top: 3em;
-    }
+    }*/
 </style>
 <svelte:head>
     <title>About</title>
