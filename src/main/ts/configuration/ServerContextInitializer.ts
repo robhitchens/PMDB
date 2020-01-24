@@ -10,6 +10,7 @@ import CONTROLLERS from "../constants/CONTROLLERS";
 import {MovieController} from "../controllers/MovieController";
 import TYPES from "../constants/TYPES";
 import ScheduledPersistence from "../service/ScheduledPersistence";
+import {ViewController} from "../controllers/ViewController";
 
 const viewsFolder: string = "../views";
 const staticFolder: string = "../../../../public";
@@ -44,6 +45,8 @@ export default class ServerContextInitializer extends Server {
         const controllerInstances = [];
         Logger.Info(`Adding MovieController`);//TODO may iterate over Controller symbols
         controllerInstances.push(container.get<MovieController>(CONTROLLERS.MovieController));
+        Logger.Info(`Adding ViewController`);
+        controllerInstances.push(container.get<ViewController>(CONTROLLERS.ViewController));
         super.addControllers(controllerInstances);
     }
 
