@@ -6,7 +6,7 @@
     import Contact, {contact} from "./pages/Contact.svelte";
     import About, {about} from "./pages/About.svelte";
     import {currentView} from './ViewStore';
-
+//
     const panes = {};
     panes[home] = Home;
     panes[contact] = Contact;

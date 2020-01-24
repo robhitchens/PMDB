@@ -13,14 +13,15 @@ import {Logger} from "@overnightjs/logger";
 import EntityManager from "../dao/EntityManager";
 import {join, resolve} from "path";
 import {readFileSync} from "fs";
-import {Properties} from "../../../resources/Properties";
+import {Properties} from "../../resources/Properties";
 import ScheduledPersistence from "../service/ScheduledPersistence";
 import ScheduledPersistenceImpl from "../service/ScheduledPersistenceImpl";
 
 //TODO need to make more robust for properties for running in different environments.
-const propertiesPath: string = resolve(__dirname, "../resources/properties.json");
-const moviesDB: string = resolve(__dirname, "../../temp/movies.db");//join(__dirname, "../../temp/movies.db");
-
+const propertiesPath: string = resolve(__dirname, "../../resources/properties.json");
+Logger.Info(`Path to properties: ${propertiesPath}`);
+const moviesDB: string = resolve(__dirname, "../../../../temp/movies.db");//join(__dirname, "../../temp/movies.db");
+Logger.Info(`Path to moviesDB ${moviesDB}`);
 const properties: Properties = <Properties> (<any> JSON.parse(readFileSync(propertiesPath, 'utf8')));
 
 

@@ -12,7 +12,7 @@ import TYPES from "../constants/TYPES";
 import ScheduledPersistence from "../service/ScheduledPersistence";
 
 const viewsFolder: string = "../views";
-const staticFolder: string = "../public";
+const staticFolder: string = "../../../../public";
 const viewEngine: string = "pug";
 
 export default class ServerContextInitializer extends Server {

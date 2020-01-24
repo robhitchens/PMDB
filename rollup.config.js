@@ -29,7 +29,7 @@ export default {
         }),
         commonjs(),
 
-        !production && serve(),
+        //!production && serve(),
         !production && livereload('public'),
         production && terser()
     ],

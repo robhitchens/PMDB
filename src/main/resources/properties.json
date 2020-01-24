@@ -1,5 +1,5 @@
 {
   "scheduler": {
-    "interval": 5000
+    "interval": 50000
   }
 }
