@@ -1,6 +1,6 @@
 <script>
     const NA = 'N/A';
-    export let hiddenId;
+    export let _id;
     export let title = NA;
     export let genres = NA;
     export let runningTime = NA;
@@ -12,7 +12,7 @@
 <style>
 
 </style>
-<span hidden>{hiddenId}</span>
+<span hidden>{_id}</span>
 <p>{title}</p>
 <p>{genres}</p><!--TODO need to create genre card?-->
 <p>{runningTime}</p>

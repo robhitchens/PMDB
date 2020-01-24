@@ -21,7 +21,8 @@ export class MovieController implements PMDBController{//TODO not sure if this w
 
     @Get()
     private queryMovies(req: Request, res: Response){
-        let queriedMovie: Movie = <Movie> (<any> req.params);//this seems a little hacky
+        Logger.Info({"message": "Request Parameters", "req-query": req.query}, true);
+        let queriedMovie: Movie = <Movie> (<any> req.query);//this seems a little hacky
         this._movieService
             .getMovies(queriedMovie)
                 .then((movies: Array<Movie>) => {

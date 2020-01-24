@@ -3,12 +3,14 @@
 </script>
 <script>
     import Movie from "../Components/Movie.svelte";
-    let title = 'bones';
+    /*let title = 'bones';*/
+    let search = '';
     let movieArr = [];
     function getMovie(){
-        console.info(`Querying for movie: ${title}`);
+        let criteria = `title=${search}`;
+        console.info(`Querying for movie: ${criteria}`);
         let xmlHttpRequest = new XMLHttpRequest();
-        let url = `movie?title=${title}`;
+        let url = `movie?${criteria}`;
         xmlHttpRequest.onreadystatechange = function() {
             console.info('Reached on ready state change');
             console.info(`Readystate: ${this.readyState}, Status: ${this.status}, Responsetext`, this.responseText);
@@ -34,21 +36,13 @@
     <title>Home</title>
 </svelte:head>
 <h1>Home Page</h1>
-<button on:click={getMovie}>Click me</button>
+<input placeholder="Search for movie" bind:value={search}/>
+<button on:click={getMovie}>Search</button>
 <p>TODO... start writing content for home page</p>
 <div class="movie-div">
     {#if movieArr.length > 0}
         {#each movieArr as movie}
-            <Movie
-                    hiddenId={movie._id}
-                    title={movie.title}
-                    genres={movie.genres}
-                    runningTime={movie.runningTime}
-                    formats={movie.formats}
-                    source={movie.source}
-                    actors={movie.actors}
-                    audioFormats={movie.audioFormats}
-            />
+            <Movie {...movie}/>
         {/each}
     {/if}
 </div>
