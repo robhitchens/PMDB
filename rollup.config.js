@@ -11,7 +11,7 @@ import sveltePreprocessor from "svelte-preprocess";
 const production = !process.env.ROLLUP_WATCH;
 //TODO apply configuration to project, need to get rollup and svelte working with typescript
 export default {
-    input: 'src/main/svelte/main.js',
+    input: 'src/main/svelte/Main.ts',
     output: {
         sourcemap: true,
         format: 'iife',

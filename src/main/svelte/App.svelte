@@ -1,5 +1,5 @@
 <!--TODO start compositing home page using svelte.-->
-<script>
+<script lang="ts">
     import Footer from "./common/Footer.svelte";
     import Navigation from './common/Navigation.svelte'
     import Home, {home} from "./pages/Home.svelte";

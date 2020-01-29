@@ -566,6 +566,11 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@pyoner/svelte-types@^3.4.4-2":
+  version "3.4.4-2"
+  resolved "https://registry.yarnpkg.com/@pyoner/svelte-types/-/svelte-types-3.4.4-2.tgz#0bc64255d56e82a5e7f3d0b31b324551a77da6b0"
+  integrity sha512-5oQsFCU9pxu1mdA72e2XOqVmheSQfpaQnsmvO4FTEd6D3k3Wx3Nr4s2m0gfqjGLHoGGEo9FOK4xQXXX7D5Uz6A==
+
 "@rollup/plugin-commonjs@^11.0.1":
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-11.0.1.tgz#6056a6757286901cc6c1599123e6680a78cad6c2"
