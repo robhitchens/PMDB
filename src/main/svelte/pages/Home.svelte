@@ -1,5 +1,5 @@
-<script context="module">
-    export const home = Symbol.for('home');
+<script context="module" lang="ts">
+    export const home: Symbol = Symbol.for('home');
 </script>
 <script lang="ts">
     import Movie from "../Components/Movie.svelte";
@@ -7,6 +7,7 @@
     /*let title = 'bones';*/
     let search: string = '';
     let movieArr: Array<MovieEntity> = [];
+
     function getMovie(): void{
         let criteria: string = `title=${search}`;
         console.info(`Querying for movie: ${criteria}`);

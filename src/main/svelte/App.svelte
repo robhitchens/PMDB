@@ -5,28 +5,19 @@
     import Home, {home} from "./pages/Home.svelte";
     import Contact, {contact} from "./pages/Contact.svelte";
     import About, {about} from "./pages/About.svelte";
+    import Admin, {admin} from "./pages/Admin.svelte";
     import {currentView} from './ViewStore';
 //
     const panes = {};
     panes[home] = Home;
     panes[contact] = Contact;
     panes[about] = About;
+    panes[admin] = Admin;
 
 </script>
 <Navigation/>
 <main>
-    <!--<h1>The view is {$currentView.toString()}</h1>-->
     <svelte:component this={panes[$currentView]}/>
-    <!--<slot name="main-content">
-        <em>no content was provided</em>
-    </slot>-->
-    <!--{#if currentView === 'home'}
-        <Home/>
-    {:else if currentView === 'contact'}
-        <Contact/>
-    {:else if currentView === 'about'}
-        <About/>
-    {/if}-->
 </main>
 <Footer/>
 

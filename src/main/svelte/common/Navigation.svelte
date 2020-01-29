@@ -4,6 +4,7 @@
     import {home} from '../pages/Home.svelte';
     import {contact} from '../pages/Contact.svelte';
     import {about} from '../pages/About.svelte';
+    import {admin} from '../pages/Admin.svelte';
     import {currentView} from '../ViewStore';
     //export let current = home;//todo will need to determine view.
     function setCurrentView(selectedView){
@@ -32,6 +33,12 @@
                     class:active={$currentView === about}
                     on:click={() => setCurrentView(about)}
             >About</button>
+        </li>
+        <li>
+            <button
+                    class:active={$currentView === admin}
+                    on:click={() => setCurrentView(admin)}
+            >Admin</button>
         </li>
     </ul>
 </nav>

@@ -1,5 +1,5 @@
-<script context="module">
-    export const about = Symbol.for('about');
+<script context="module" lang="ts">
+    export const about: Symbol = Symbol.for('about');
 </script>
 <style>
     /*div{
