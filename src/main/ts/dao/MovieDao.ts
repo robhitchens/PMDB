@@ -1,22 +1,22 @@
-import Movie from '../entity/Movie';
+import MovieEntity from '../entity/MovieEntity';
 export default interface MovieDao {
-    findMovies(movie: Movie): Promise<Array<Movie>>;
+    findMovies(movie: MovieEntity): Promise<Array<MovieEntity>>;
 
-    findMovieByTitle(title: string): Promise<Movie>;
-    findMoviesMatchingTitle(title: string): Promise<Array<Movie>>;
-    findMoviesByGenre(genre: string): Promise<Array<Movie>>;
-    findMoviesCloseToRunningTime(runningTime: string): Promise<Array<Movie>>;//TODO placeholder input type.
-    findMoviesByFormat(format: string): Promise<Array<Movie>>;
-    findMoviesByFormats(format: Array<string>): Promise<Array<Movie>>;
-    findMoviesBySource(source: string): Promise<Array<Movie>>;
-    findMoviesFeaturingActor(actor: string): Promise<Array<Movie>>;
-    findMoviesWithActors(actors: Array<string>): Promise<Array<Movie>>;
-    findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<Movie>>;
-    findMovieById(id: string): Promise<Movie>;
+    findMovieByTitle(title: string): Promise<MovieEntity>;
+    findMoviesMatchingTitle(title: string): Promise<Array<MovieEntity>>;
+    findMoviesByGenre(genre: string): Promise<Array<MovieEntity>>;
+    findMoviesCloseToRunningTime(runningTime: string): Promise<Array<MovieEntity>>;//TODO placeholder input type.
+    findMoviesByFormat(format: string): Promise<Array<MovieEntity>>;
+    findMoviesByFormats(format: Array<string>): Promise<Array<MovieEntity>>;
+    findMoviesBySource(source: string): Promise<Array<MovieEntity>>;
+    findMoviesFeaturingActor(actor: string): Promise<Array<MovieEntity>>;
+    findMoviesWithActors(actors: Array<string>): Promise<Array<MovieEntity>>;
+    findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<MovieEntity>>;
+    findMovieById(id: string): Promise<MovieEntity>;
 
-    create(movie: Movie): Promise<Movie>;
-    update(movie: Movie): Promise<Movie>;
-    delete(movie: Movie): Promise<boolean>;//todo may just return boolean for successful deletion.
+    create(movie: MovieEntity): Promise<MovieEntity>;
+    update(movie: MovieEntity): Promise<MovieEntity>;
+    delete(movie: MovieEntity): Promise<boolean>;//todo may just return boolean for successful deletion.
 
-    getOnlyCachedMovies(): Promise<Array<Movie>>;
+    getOnlyCachedMovies(): Promise<Array<MovieEntity>>;
 }

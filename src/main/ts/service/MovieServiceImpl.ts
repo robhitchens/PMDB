@@ -1,7 +1,7 @@
 import MovieDao from "../dao/MovieDao";
 import MovieService from "./MovieService";
 import {inject, injectable} from "inversify";
-import Movie from "../entity/Movie";
+import MovieEntity from "../entity/MovieEntity";
 import TYPES from "../constants/TYPES";
 
 //TODO this doesn't really do anything more than the dao right now, but it will in future. maybe.
@@ -14,21 +14,21 @@ export default class MovieServiceImpl implements MovieService{
         this._movieDao = movieDao;
     }
 
-    getMovies(movie: Movie): Promise<Array<Movie>> {//TODO should really separate database and domain layers better.
+    getMovies(movie: MovieEntity): Promise<Array<MovieEntity>> {//TODO should really separate database and domain layers better.
         return this._movieDao.findMovies(movie);//NOTE: using movie class here like query. need to see if this will actually work. probably not like I expect it to.
     }
 
-    getMovieByTitle(title: string): Promise<Movie> {
+    getMovieByTitle(title: string): Promise<MovieEntity> {
         return this._movieDao.findMovieByTitle(title);
     }
 //TODO so far this class just sits in front of the movieservice
-    save(movie: Movie): Promise<Movie> {
+    save(movie: MovieEntity): Promise<MovieEntity> {
         return this._movieDao.create(movie);
     }
 
-    async update(movie: Movie): Promise<Movie> {
+    async update(movie: MovieEntity): Promise<MovieEntity> {
         try {
-           let savedMovie: Movie = await this._movieDao.findMovieById(movie._id);
+           let savedMovie: MovieEntity = await this._movieDao.findMovieById(movie._id);
            if(savedMovie){
                savedMovie._persisted = false;
                return await this._movieDao.update(movie);
@@ -40,7 +40,7 @@ export default class MovieServiceImpl implements MovieService{
         }
     }
 
-    delete(movie: Movie): Promise<boolean> {
+    delete(movie: MovieEntity): Promise<boolean> {
         return this._movieDao.delete(movie);
     }
 }

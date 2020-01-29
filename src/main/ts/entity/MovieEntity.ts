@@ -1,7 +1,7 @@
 //TODO types are place holders for now
 import PMDBEntity from "./PMDBEntity";
 
-export default class Movie extends PMDBEntity{
+export default class MovieEntity extends PMDBEntity{
     private _title: string;
     private _genres: Array<string>;//TODO could make separate entity. Or create separate microservice to handle
     private _runningTime: string;

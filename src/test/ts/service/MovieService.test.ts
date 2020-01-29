@@ -3,7 +3,7 @@ import MovieServiceImpl from "../../../main/ts/service/MovieServiceImpl";
 import MovieService from "../../../main/ts/service/MovieService";
 import MovieDao from "../../../main/ts/dao/MovieDao";
 import {mocked} from "ts-jest/utils";
-import Movie from "../../../main/ts/entity/Movie";
+import MovieEntity from "../../../main/ts/entity/MovieEntity";
 import bones from "../../temp/BonesMovie";
 import MovieDaoImpl from "../../../main/ts/dao/MovieDaoImpl";
 //jest.mock('../../src/dao/MovieDao');
@@ -43,7 +43,7 @@ describe('When searching for a movie by title', () => {
                     return Promise.reject(`title: ${title} no exist`);
                 }
             });
-        let result: Movie = await movieService.getMovieByTitle("Bones");
+        let result: MovieEntity = await movieService.getMovieByTitle("Bones");
 
         expect(mockMovieDao.findMovieByTitle).toHaveBeenCalled();
         expect(mockMovieDao.findMovieByTitle).toHaveBeenCalledTimes(1);
@@ -75,9 +75,9 @@ describe('When getting all movies matching criteria', () => {
     it('should return the an array of matching movies', async () => {
         mockMovieDao.findMovies = jest.fn()
             .mockImplementationOnce(() => {
-            return Promise.resolve(new Array<Movie>(bones));
+            return Promise.resolve(new Array<MovieEntity>(bones));
         });
-        let results: Array<Movie> = await movieService.getMovies(bones);
+        let results: Array<MovieEntity> = await movieService.getMovies(bones);
         expect(mockMovieDao.findMovies).toHaveBeenCalled();
         expect(mockMovieDao.findMovies).toHaveBeenCalledTimes(1);
         expect(mockMovieDao.findMovies).toHaveBeenCalledWith(bones);
@@ -97,7 +97,7 @@ describe('When update is called', () => {
             return Promise.reject(new Error(errorMessage));
         });
         mockMovieDao.update = jest.fn()
-            .mockImplementationOnce((movie: Movie) => {
+            .mockImplementationOnce((movie: MovieEntity) => {
             console.debug(`mock update implementation called with:`, movie);
             return Promise.resolve(movie);
         });
@@ -118,11 +118,11 @@ describe('When update is called', () => {
             return Promise.resolve(bones);
         });
         mockMovieDao.update = jest.fn()
-            .mockImplementationOnce((movie: Movie) => {
+            .mockImplementationOnce((movie: MovieEntity) => {
             console.debug(`mock update implementation called with:`, movie);
             return Promise.resolve(movie);
         });
-        let result: Movie = await movieService.update(bones);
+        let result: MovieEntity = await movieService.update(bones);
 
                 expect(mockMovieDao.findMovieById).toHaveBeenCalled();
                 expect(mockMovieDao.findMovieById).toHaveBeenCalledTimes(1);

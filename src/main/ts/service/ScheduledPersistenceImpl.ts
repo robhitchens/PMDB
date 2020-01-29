@@ -4,7 +4,7 @@ import TYPES from "../constants/TYPES";
 import {Properties} from "../../resources/Properties";
 import MovieDao from "../dao/MovieDao";
 import {Logger} from "@overnightjs/logger";
-import Movie from "../entity/Movie";
+import MovieEntity from "../entity/MovieEntity";
 
 @injectable()
 export default class ScheduledPersistenceImpl implements ScheduledPersistence{
@@ -37,8 +37,8 @@ export default class ScheduledPersistenceImpl implements ScheduledPersistence{
     }
 
     async writeCacheToPersistence(): Promise<void> {
-        let results: Movie[] = await this.movieDao.getOnlyCachedMovies();
-        results.forEach((value: Movie, index: number, array: Movie[]) => {
+        let results: MovieEntity[] = await this.movieDao.getOnlyCachedMovies();
+        results.forEach((value: MovieEntity, index: number, array: MovieEntity[]) => {
             Logger.Info({
                 message: `Writing movie with id ${value._id} to database`,
                 value: value

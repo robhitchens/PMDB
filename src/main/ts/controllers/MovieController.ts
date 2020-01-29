@@ -5,7 +5,7 @@ import {inject, injectable, named} from "inversify";
 import MovieService from "../service/MovieService";
 import TYPES from "../constants/TYPES";
 import PMDBController from "./PMDBController";
-import Movie from "../entity/Movie";
+import MovieEntity from "../entity/MovieEntity";
 
 @Controller('movie')
 @injectable()
@@ -22,10 +22,10 @@ export class MovieController implements PMDBController{//TODO not sure if this w
     @Get()
     private queryMovies(req: Request, res: Response){
         Logger.Info({"message": "Request Parameters", "req-query": req.query}, true);
-        let queriedMovie: Movie = <Movie> (<any> req.query);//this seems a little hacky
+        let queriedMovie: MovieEntity = <MovieEntity> (<any> req.query);//this seems a little hacky
         this._movieService
             .getMovies(queriedMovie)
-                .then((movies: Array<Movie>) => {
+                .then((movies: Array<MovieEntity>) => {
                     Logger.Info(`Found ${movies.length} movie(s) matching query ${JSON.stringify(queriedMovie)}`);
                     res.status(200).json(movies);
                 })
@@ -46,7 +46,7 @@ export class MovieController implements PMDBController{//TODO not sure if this w
     @Post('create')
     private postMovie(req: Request, res: Response){
         Logger.Info(req, true);
-        let newMovie: Movie = <Movie> req.body;
+        let newMovie: MovieEntity = <MovieEntity> req.body;
         this._movieService.save(newMovie)
             .then((savedMovie) => {
                 res.status(200).json(savedMovie);
@@ -59,7 +59,7 @@ export class MovieController implements PMDBController{//TODO not sure if this w
 
     @Post('update')
     private updateMovie(req: Request, res: Response){
-        let movieToUpdate: Movie = <Movie> req.body;
+        let movieToUpdate: MovieEntity = <MovieEntity> req.body;
         this._movieService.update(movieToUpdate)
             .then(updatedMovie => {
                 res.status(200).json(updatedMovie);
@@ -72,7 +72,7 @@ export class MovieController implements PMDBController{//TODO not sure if this w
 
     @Delete()
     private delMovie(req: Request, res: Response){
-        let movieToDelete: Movie = <Movie> req.body;
+        let movieToDelete: MovieEntity = <MovieEntity> req.body;
         this._movieService.delete(movieToDelete)
             .then(result => {
                 let response: any = {

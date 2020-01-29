@@ -1,4 +1,4 @@
-import Movie from "../entity/Movie";
+import MovieEntity from "../entity/MovieEntity";
 import MovieDao from "./MovieDao";
 import {inject, injectable} from "inversify";
 //import bones from "../../test/temp/BonesMovie";
@@ -23,9 +23,9 @@ export default class MovieDaoImpl implements MovieDao{
         this.dataStore = entityManager.movies;
     }
 
-    findMovies(movie: Movie): Promise<Array<Movie>> {
+    findMovies(movie: MovieEntity): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-           this.dataStore.find(movie, (err: Error, documents: Array<Movie>) => {
+           this.dataStore.find(movie, (err: Error, documents: Array<MovieEntity>) => {
                 if(err){
                     Logger.Err({
                         message: `Unable to find movies for query:`,
@@ -40,10 +40,10 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    public findMovieByTitle(title: string): Promise<Movie>{//TODO this may never be used
-        return new Promise<Movie>(
+    public findMovieByTitle(title: string): Promise<MovieEntity>{//TODO this may never be used
+        return new Promise<MovieEntity>(
             (resolve, reject) => {
-                this.dataStore.findOne({title: title}, (err: Error, document: Movie) => {
+                this.dataStore.findOne({title: title}, (err: Error, document: MovieEntity) => {
                     if(err) {
                         Logger.Warn(`Error occurred finding movie for title: ${title}: error: ${err.message}`);
                         Logger.Err(err, true);
@@ -56,9 +56,9 @@ export default class MovieDaoImpl implements MovieDao{
         );
     }
 
-    findMoviesByFormat(format: string): Promise<Array<Movie>> {
+    findMoviesByFormat(format: string): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({format: format}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({format: format}, (err: Error, documents: Array<MovieEntity>) => {
                 if(err){
                     Logger.Warn(`Error occurred getting movies for format ${format}. Error: ${err.message}`);
                     Logger.Err(err, true);
@@ -70,9 +70,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMoviesByFormats(format: Array<string>): Promise<Array<Movie>> {
+    findMoviesByFormats(format: Array<string>): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-           this.dataStore.find({format: {$in: format}}, (err: Error, documents: Array<Movie>) => {
+           this.dataStore.find({format: {$in: format}}, (err: Error, documents: Array<MovieEntity>) => {
               if(err){
                   Logger.Warn(`Error occurred finding Movies for format(s) ${format}. Error: ${err.message}`);
                   Logger.Err(err, true);
@@ -84,9 +84,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMoviesByGenre(genre: string): Promise<Array<Movie>> {
+    findMoviesByGenre(genre: string): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({genre: genre}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({genre: genre}, (err: Error, documents: Array<MovieEntity>) => {
                 if(err){
                     Logger.Warn(`Error occurred finding movies by genre: ${genre}. Error: ${err.message}`);
                     Logger.Err(err, true);
@@ -98,9 +98,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMoviesBySource(source: string): Promise<Array<Movie>> {
+    findMoviesBySource(source: string): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({source: source}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({source: source}, (err: Error, documents: Array<MovieEntity>) => {
                 if(err){
                     Logger.Warn(`Error occurred finding Movies for source: ${source}. Error: ${err.message}`);
                     Logger.Err(err, true);
@@ -112,9 +112,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMoviesCloseToRunningTime(runningTime: string): Promise<Array<Movie>> {
+    findMoviesCloseToRunningTime(runningTime: string): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({runningTime: runningTime}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({runningTime: runningTime}, (err: Error, documents: Array<MovieEntity>) => {
                     if(err){
                         Logger.Warn(`Error occurred finding Movies by runningTime: ${runningTime}. Error: ${err.message}`);
                         Logger.Err(err, true);
@@ -126,15 +126,15 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMoviesFeaturingActor(actor: string): Promise<Array<Movie>> {
+    findMoviesFeaturingActor(actor: string): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
             reject(new Error('TODO implement'));
         });
     }
 
-    findMoviesMatchingTitle(title: string): Promise<Array<Movie>> {
+    findMoviesMatchingTitle(title: string): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-                this.dataStore.find({title: title}, (err: Error, documents: Array<Movie>) => {
+                this.dataStore.find({title: title}, (err: Error, documents: Array<MovieEntity>) => {
                     if(err){
                         Logger.Warn(`Error occurred finding movies by title  ${title}. Error: ${err.message}`);
                         Logger.Warn(err, true);
@@ -146,9 +146,9 @@ export default class MovieDaoImpl implements MovieDao{
             });
     }
 
-    findMoviesWithActors(actors: Array<string>): Promise<Array<Movie>> {
+    findMoviesWithActors(actors: Array<string>): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({actors: {$in: actors}}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({actors: {$in: actors}}, (err: Error, documents: Array<MovieEntity>) => {
                 if (err) {
                     Logger.Warn(`Error occurred finding Movies with actors: ${actors}. Error: ${err.message}`);
                     Logger.Err(err, true);
@@ -160,9 +160,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<Movie>> {
+    findMoviesWithAudioFormats(audioFormats: Array<string>): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({audioFormats: {$in: audioFormats}}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({audioFormats: {$in: audioFormats}}, (err: Error, documents: Array<MovieEntity>) => {
                 if(err){
                     Logger.Warn(`Error occurred finding Movies with audio formats: ${audioFormats}. Error: ${err.message}`);
                     Logger.Err(err, true);
@@ -174,9 +174,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    findMovieById(id: string): Promise<Movie> {
+    findMovieById(id: string): Promise<MovieEntity> {
         return new Promise((resolve, reject) => {
-            this.dataStore.findOne({_id: id}, (err: Error, document: Movie) => {
+            this.dataStore.findOne({_id: id}, (err: Error, document: MovieEntity) => {
                 if(err){
                     Logger.Warn(`Unable to find movie for Id: ${id}`);
                     Logger.Err(err, true);
@@ -188,9 +188,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    create(movie: Movie): Promise<Movie> {
+    create(movie: MovieEntity): Promise<MovieEntity> {
         return new Promise((resolve, reject) => {
-           this.dataStore.insert(movie, (err: Error, document: Movie) => {
+           this.dataStore.insert(movie, (err: Error, document: MovieEntity) => {
                if(err){
                    Logger.Err({
                        message: `Unable to save movie ${JSON.stringify(movie)}`,
@@ -205,10 +205,10 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    update(movie: Movie): Promise<Movie> {
+    update(movie: MovieEntity): Promise<MovieEntity> {
         return new Promise((resolve, reject) => {
             this.dataStore.update({_id: movie._id}, movie, {returnUpdatedDocs: true},
-                (err: Error, numAffected: number, affectedDocuments: Array<Movie>, upsert: boolean) => {
+                (err: Error, numAffected: number, affectedDocuments: Array<MovieEntity>, upsert: boolean) => {
                     if(err){
                         Logger.Err({
                             message: `Unable to update movie with id:${movie._id}`,
@@ -225,7 +225,7 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    delete(movie: Movie): Promise<boolean> {
+    delete(movie: MovieEntity): Promise<boolean> {
         return new Promise((resolve, reject) => {
             this.dataStore.remove({_id: movie._id}, {}, (err: Error, numRemoved: number) => {
                 if(err){
@@ -246,9 +246,9 @@ export default class MovieDaoImpl implements MovieDao{
         });
     }
 
-    getOnlyCachedMovies(): Promise<Array<Movie>> {
+    getOnlyCachedMovies(): Promise<Array<MovieEntity>> {
         return new Promise((resolve, reject) => {
-            this.dataStore.find({_persisted: false}, (err: Error, documents: Array<Movie>) => {
+            this.dataStore.find({_persisted: false}, (err: Error, documents: Array<MovieEntity>) => {
                 if(err){
                     Logger.Err({
                         message: 'Error occurred looking for only cached movies',
