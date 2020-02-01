@@ -830,6 +830,22 @@
   dependencies:
     "@material/feature-targeting" "^3.1.0"
 
+"@material/top-app-bar@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-3.2.0.tgz#2bc50bd30d782bacf29fe9a65b5644aca1fd2cf0"
+  integrity sha512-p3PuCIbg0uDveS30D1R8/fcwqeTMXe4oRFnB6Z5Wlej0NySi6038i+TPsHtgYLCR3QpVThnkVch37zyXcNpQoQ==
+  dependencies:
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/elevation" "^3.1.0"
+    "@material/icon-button" "^3.2.0"
+    "@material/ripple" "^3.2.0"
+    "@material/rtl" "^3.2.0"
+    "@material/shape" "^3.1.0"
+    "@material/theme" "^3.1.0"
+    "@material/typography" "^3.1.0"
+    tslib "^1.9.3"
+
 "@material/typography@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-3.1.0.tgz#5a3aee31f49f6b8c87ebc91b77c5b896b280c492"
@@ -1156,6 +1172,15 @@
     "@material/tab" "^3.2.0"
     "@smui/common" "^1.0.0-beta.20"
     "@smui/tab-indicator" "^1.0.0-beta.20"
+
+"@smui/top-app-bar@^1.0.0-beta.20":
+  version "1.0.0-beta.20"
+  resolved "https://registry.yarnpkg.com/@smui/top-app-bar/-/top-app-bar-1.0.0-beta.20.tgz#252acf50435b37c4f6a863c50eeecc8277cc40df"
+  integrity sha512-W6ZN2Z55+kLHMBh5aNBiEkbu1+myGnCShkBWhOIZK9sImpYJwlswpOfHgGylXABs3ITPAawDgeWqS/HzrH/U9w==
+  dependencies:
+    "@material/feature-targeting" "^3.1.0"
+    "@material/top-app-bar" "^3.2.0"
+    "@smui/common" "^1.0.0-beta.20"
 
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.7"
