@@ -6,6 +6,7 @@
     import Contact, {contact} from "./pages/Contact.svelte";
     import About, {about} from "./pages/About.svelte";
     import Admin, {admin} from "./pages/Admin.svelte";
+    import TopAppBar from "@smui/top-app-bar";
     import {currentView} from './ViewStore';
 //
     const panes = {};
@@ -15,6 +16,7 @@
     panes[admin] = Admin;
 
 </script>
+<TopAppBar/> <!--todo need to figure out how to use material UI-->
 <Navigation/>
 <main>
     <svelte:component this={panes[$currentView]}/>
