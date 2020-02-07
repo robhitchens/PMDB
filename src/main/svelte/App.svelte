@@ -6,20 +6,38 @@
     import Contact, {contact} from "./pages/Contact.svelte";
     import About, {about} from "./pages/About.svelte";
     import Admin, {admin} from "./pages/Admin.svelte";
-    import TopAppBar from "@smui/top-app-bar";
+    import IconButton from "@smui/icon-button";
+    import TopAppBar, {Row, Section} from "@smui/top-app-bar";
     import {currentView} from './ViewStore';
 //
-    const panes = {};
+    const panes: any = {};
     panes[home] = Home;
     panes[contact] = Contact;
     panes[about] = About;
     panes[admin] = Admin;
 
+    let prominent = false;
+    let dense = false;
+    let secondaryColor = false;
 </script>
-<TopAppBar/> <!--todo need to figure out how to use material UI-->
-<Navigation/>
+<TopAppBar variant="static" {prominent} {dense} color={secondaryColor? 'secondary' : 'primary'}>
+    <Row>
+        <Section>
+            <IconButton class="material-icons">menu</IconButton>
+            <Title>PMDB</Title>
+        </Section>
+        <Section align="end" toolbar>
+            <IconButton class="material-icons" aria-label="Download">file_download</IconButton>
+            <IconButton class="material-icons" aria-label="Print this page">print</IconButton>
+            <IconButton class="material-icons" aria-label="Bookmark this page">bookmark</IconButton>
+        </Section>
+    </Row>
+</TopAppBar>
+<!--<Navigation/>-->
 <main>
-    <svelte:component this={panes[$currentView]}/>
+    <div class="flexor-content">
+        <svelte:component this={panes[$currentView]}/>
+    </div>
 </main>
 <Footer/>
 
