@@ -8,19 +8,10 @@ import typescript from "@rollup/plugin-typescript";
 import typescriptCompiler from "typescript";
 import sveltePreprocessor from "svelte-preprocess";
 import postcss from "rollup-plugin-postcss";
-import scss from "rollup-plugin-scss";
-import alias from "rollup-plugin-alias";
 import sass from "rollup-plugin-sass";
 import path from "path";
 
 const production = !process.env.ROLLUP_WATCH;
-const aliases = () => ({
-    resolve: ['.svelte', '.js', '.scss', '.css'],
-    entries:[
-        {find:/^@smui\/([^\/]+)$/, replacement: path.resolve(__dirname, /*'..',*/ 'node_modules', '$1', 'index.js')},
-        {find:/^@smui\/([^\/]+)\/(.*)$/, replacement: path.resolve(__dirname, /*'..',*/ 'node_modules', '$1', '$2')}
-    ]
-});
 const postcssOptions = () => ({
     extensions: ['.scss', '.sass'],
     extract: false,
@@ -47,12 +38,7 @@ export default {
         file: 'public/build/bundle.js'
     },
     plugins: [//TODO don't know how this will turn out
-        /*sass({
-            output: 'public/build/bundle.css',
-        }),*/
-        //scss(),
         //replace({}),//TODO need to replace any environment keys in frontend with process configured keys.
-        /*alias(aliases()),*/
         postcss(postcssOptions()),
         svelte({
             dev: !production,
