@@ -10,6 +10,7 @@ import sveltePreprocessor from "svelte-preprocess";
 import postcss from "rollup-plugin-postcss";
 import scss from "rollup-plugin-scss";
 import alias from "rollup-plugin-alias";
+import sass from "rollup-plugin-sass";
 import path from "path";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -27,7 +28,7 @@ const postcssOptions = () => ({
     use: [
         ['sass', {
             includePaths: [
-                //'./src/theme',
+                './src/main/svelte/theme',
                 './node_modules',
                 // This is only needed because we're using a local module. :-/
                 // Normally, you would not need this line.
@@ -45,11 +46,14 @@ export default {
         name: 'app',
         file: 'public/build/bundle.js'
     },
-    plugins: [
-        scss(),
+    plugins: [//TODO don't know how this will turn out
+        /*sass({
+            output: 'public/build/bundle.css',
+        }),*/
+        //scss(),
         //replace({}),//TODO need to replace any environment keys in frontend with process configured keys.
         /*alias(aliases()),*/
-        /*postcss(postcssOptions()),*/
+        postcss(postcssOptions()),
         svelte({
             dev: !production,
             extensions: [".svelte"],
