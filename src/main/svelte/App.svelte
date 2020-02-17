@@ -1,5 +1,5 @@
 <!--TODO start compositing home page using svelte.-->
-<script lang="ts">
+<script>
     import Footer from "./common/Footer.svelte";
     import Navigation from './common/Navigation.svelte'
     import Home, {home} from "./pages/Home.svelte";
@@ -10,7 +10,7 @@
     import TopAppBar, {Row, Section, Title} from "@smui/top-app-bar";
     import {currentView} from './ViewStore';
 //
-    const panes: any = {};
+    const panes = {};
     panes[home] = Home;
     panes[contact] = Contact;
     panes[about] = About;
