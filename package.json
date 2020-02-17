@@ -61,6 +61,7 @@
     "@types/nedb": "^1.8.9",
     "@types/node": "^12.12.14",
     "esm": "^3.2.25",
+    "implement-js": "0.0.31",
     "jest": "^24.9.0",
     "nodemon": "^2.0.1",
     "rollup": "^1.29.0",
