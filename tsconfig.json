@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    /*"strict": true,*/
+    "strict": true,
     // "baseUrl": "./",
     "removeComments": true,
     "experimentalDecorators": true,
@@ -13,7 +13,7 @@
     "target": "es2015",
     "types": ["reflect-metadata", "node", "jest", "@pyoner/svelte-types"],
     "sourceMap": true,
-    //"module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true
   },
