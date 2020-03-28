@@ -70,8 +70,11 @@ export default class ServerContextInitializer extends Server {
         });
     }
 
+    //TODO I don't know why typescript is having an issue here.
+    //It's like it doesn't understand the function being passed as valid or something cause it doesn't have a problem
+    //with the other handler methods that have been setup.
     private setupDefaultErrorHandler(): void{
-        this.app.use((err, req, res, next) => {
+        this.app.use((err: any, req: any, res: any, next: any) => {
            res.locals.message = err.message;
            res.locals.error = req.app.get('env') === 'development' ? err : {};
 
