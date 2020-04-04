@@ -13,7 +13,7 @@
     "target": "es2015",
     "types": ["reflect-metadata", "node", "jest", "@pyoner/svelte-types"],
     "sourceMap": true,
-    "module": "esnext",
+    //"module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true
   },
