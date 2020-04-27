@@ -70,7 +70,7 @@ export default class ServerContextInitializer extends Server {
         });
     }
 
-    //TODO I don't know why typescript is having an issue here.
+    //TODO I don't know why typescript is having an issue here. Note: I think this has since been fixed.
     //It's like it doesn't understand the function being passed as valid or something cause it doesn't have a problem
     //with the other handler methods that have been setup.
     private setupDefaultErrorHandler(): void{
