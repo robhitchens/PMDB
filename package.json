@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^2.3.2",
+    "apisauce": "^1.1.1",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -60,7 +62,6 @@
     "@types/jest": "^24.0.23",
     "@types/nedb": "^1.8.9",
     "@types/node": "^12.12.37",
-    "axios": "^0.19.2",
     "esm": "^3.2.25",
     "implement-js": "0.0.31",
     "jest": "^24.9.0",
