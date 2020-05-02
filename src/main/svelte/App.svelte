@@ -8,7 +8,7 @@
     import Admin, {admin} from "./pages/Admin.svelte";
     import IconButton from "@smui/icon-button";
     import TopAppBar, {Row, Section, Title} from "@smui/top-app-bar";
-    import {currentView} from './ViewStore';
+    import {currentView} from './store/ViewStore';
 //
     const panes = {};
     panes[home] = Home;

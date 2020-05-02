@@ -5,7 +5,7 @@
     import {contact} from '../pages/Contact.svelte';
     import {about} from '../pages/About.svelte';
     import {admin} from '../pages/Admin.svelte';
-    import {currentView} from '../ViewStore';
+    import {currentView} from '../store/ViewStore';
     //export let current = home;//todo will need to determine view.
     function setCurrentView(selectedView){
         console.log('setting view to: ', selectedView);

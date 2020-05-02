@@ -1,6 +1,6 @@
-<script context="module" lang="ts">
-    export const home: Symbol = Symbol.for('home');
-</script>
+<!--<script context="module" lang="ts">
+
+</script>-->
 <script lang="ts">
     import Movie from "../Components/Movie.svelte";
     import MovieEntity from "../../ts/entity/MovieEntity";

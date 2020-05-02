@@ -1,0 +1,1 @@
+export const home: Symbol = Symbol.for('home');

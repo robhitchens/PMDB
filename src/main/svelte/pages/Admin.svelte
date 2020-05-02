@@ -3,6 +3,7 @@
 </script>
 <script lang="ts">
     import MovieEntity from '../../ts/entity/MovieEntity';
+    import {apiInstance} from '../service/ApiService';
     let title: string;
     let runningTime: string;
     let genre: string;
@@ -35,6 +36,8 @@
             }
         };
         xmlHttpRequest.send(JSON.stringify(data));
+        let request = apiInstance.post(url, data, {headers: {"Content-Type": "application/json;charset=UTF-8"}});
+        //TODO, should probably be developing the frontend using vscode since svelte support is much better there.
     }
 </script>
 <style>
