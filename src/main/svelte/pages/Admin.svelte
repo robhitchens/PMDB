@@ -1,9 +1,9 @@
-<script context="module" lang="ts">
-    export const admin: Symbol = Symbol.for('admin');
-</script>
+<!--<script context="module" lang="ts">
+
+</script>-->
 <script lang="ts">
-    import MovieEntity from '../../ts/entity/MovieEntity';
-    import {apiInstance} from '../service/ApiService';
+    import MovieEntity from "../../ts/entity/MovieEntity";
+    import {postMovieEntry} from "./AdminService";
     let title: string;
     let runningTime: string;
     let genre: string;
@@ -16,7 +16,7 @@
     let audioFormat: string;
     let audioFormats: string[] = [];
     /*TODO can use reactivity to show components from arrays*/
-    function submitMovieEntry(): void{
+    const submitMovieEntry = (): void => {
         let data: MovieEntity = new MovieEntity();
         data.title = title;
         data.runningTime = runningTime;
@@ -24,8 +24,9 @@
         data.formats = formats;
         data.actors = actors;
         data.audioFormats = audioFormats;
+        postMovieEntry(data);
 
-        let xmlHttpRequest: XMLHttpRequest = new XMLHttpRequest();
+        /*let xmlHttpRequest: XMLHttpRequest = new XMLHttpRequest();
         let url: string = `movie/create`;
         xmlHttpRequest.open('POST', url, true);
         xmlHttpRequest.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
@@ -36,7 +37,7 @@
             }
         };
         xmlHttpRequest.send(JSON.stringify(data));
-        let request = apiInstance.post(url, data, {headers: {"Content-Type": "application/json;charset=UTF-8"}});
+        let request = apiInstance.post(url, data, {headers: {"Content-Type": "application/json;charset=UTF-8"}});*/
         //TODO, should probably be developing the frontend using vscode since svelte support is much better there.
     }
 </script>

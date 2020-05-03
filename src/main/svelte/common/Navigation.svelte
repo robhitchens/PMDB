@@ -1,10 +1,10 @@
 <!--TODO need to figure out what layout will look like-->
-<script>
+<script lang="ts">
     import {currentViewKey} from '../contextKeys';
-    import {home} from '../pages/Home.svelte';
+    import {home} from '../pages/HomeService';
     import {contact} from '../pages/Contact.svelte';
     import {about} from '../pages/About.svelte';
-    import {admin} from '../pages/Admin.svelte';
+    import {admin} from '../pages/AdminService';
     import {currentView} from '../store/ViewStore';
     //export let current = home;//todo will need to determine view.
     function setCurrentView(selectedView){
