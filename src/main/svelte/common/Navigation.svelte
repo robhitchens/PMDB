@@ -2,15 +2,15 @@
 <script lang="ts">
     import {currentViewKey} from '../contextKeys';
     import {home} from '../pages/HomeService';
-    import {contact} from '../pages/Contact.svelte';
-    import {about} from '../pages/About.svelte';
+    import {contact} from '../pages/ContactService';
+    import {about} from '../pages/AboutService';
     import {admin} from '../pages/AdminService';
     import {currentView} from '../store/ViewStore';
     //export let current = home;//todo will need to determine view.
     function setCurrentView(selectedView){
         console.log('setting view to: ', selectedView);
         currentView.set(selectedView);
-        console.log('Current view: ', $currentView);
+        console.log('Current view: ', currentView);
     }
 </script>
 

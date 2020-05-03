@@ -1,6 +1,6 @@
-<script context="module" lang="ts">
-    export const contact: Symbol = Symbol.for('contact');
-</script>
+<!--<script context="module" lang="ts">
+
+</script>-->
 <style>
 
 </style>

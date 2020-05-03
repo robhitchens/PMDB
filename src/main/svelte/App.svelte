@@ -2,10 +2,14 @@
 <script>
     import Footer from "./common/Footer.svelte";
     import Navigation from './common/Navigation.svelte'
-    import Home, {home} from "./pages/Home.svelte";
-    import Contact, {contact} from "./pages/Contact.svelte";
-    import About, {about} from "./pages/About.svelte";
-    import Admin, {admin} from "./pages/Admin.svelte";
+    import Home from "./pages/Home.svelte"
+    import {home} from "./pages/HomeService";
+    import Contact from "./pages/Contact.svelte";
+    import {contact} from "./pages/ContactService";
+    import About from "./pages/About.svelte";
+    import {about} from "./pages/AboutService";
+    import Admin from "./pages/Admin.svelte";
+    import {admin} from "./pages/AdminService";
     import IconButton from "@smui/icon-button";
     import TopAppBar, {Row, Section, Title} from "@smui/top-app-bar";
     import {currentView} from './store/ViewStore';

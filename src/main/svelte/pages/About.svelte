@@ -1,6 +1,6 @@
-<script context="module" lang="ts">
-    export const about: Symbol = Symbol.for('about');
-</script>
+<!--<script context="module" lang="ts">
+
+</script>-->
 <style>
     /*div{
         margin-top: 3em;

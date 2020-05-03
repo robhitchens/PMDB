@@ -1,0 +1,1 @@
+export const about: Symbol = Symbol.for('about');
