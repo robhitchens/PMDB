@@ -1,23 +1,24 @@
 <!--<script context="module" lang="ts">
 
 </script>-->
-<script lang="ts">
+<script>
     import MovieEntity from "../../ts/entity/MovieEntity";
     import {postMovieEntry} from "./AdminService";
-    let title: string;
-    let runningTime: string;
-    let genre: string;
-    let genres: string[] = [];
-    let format: string;
-    let formats: string[] = [];
-    let source: string;
-    let actor: string;
-    let actors: string[] = [];
-    let audioFormat: string;
-    let audioFormats: string[] = [];
+    let title;
+    let runningTime;
+    let genre;
+    let genres = [];
+    let format;
+    let formats = [];
+    let source;
+    let actor;
+    let actors = [];
+    let audioFormat;
+    let audioFormats = [];
+
     /*TODO can use reactivity to show components from arrays*/
-    const submitMovieEntry = (): void => {
-        let data: MovieEntity = new MovieEntity();
+    const submitMovieEntry = () => {
+        let data = new MovieEntity();
         data.title = title;
         data.runningTime = runningTime;
         data.genres = genres;
@@ -25,7 +26,6 @@
         data.actors = actors;
         data.audioFormats = audioFormats;
         postMovieEntry(data);
-
     }
 </script>
 <style>
