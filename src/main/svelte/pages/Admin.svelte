@@ -26,19 +26,6 @@
         data.audioFormats = audioFormats;
         postMovieEntry(data);
 
-        /*let xmlHttpRequest: XMLHttpRequest = new XMLHttpRequest();
-        let url: string = `movie/create`;
-        xmlHttpRequest.open('POST', url, true);
-        xmlHttpRequest.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
-        xmlHttpRequest.onreadystatechange = function(){
-            if(this.readyState === 4 && this.status === 200){
-                let savedMovie: MovieEntity = JSON.parse(this.responseText);
-                console.info('saved movie:', savedMovie);
-            }
-        };
-        xmlHttpRequest.send(JSON.stringify(data));
-        let request = apiInstance.post(url, data, {headers: {"Content-Type": "application/json;charset=UTF-8"}});*/
-        //TODO, should probably be developing the frontend using vscode since svelte support is much better there.
     }
 </script>
 <style>
